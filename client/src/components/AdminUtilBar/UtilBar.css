@@ -1,0 +1,12 @@
+.util-bar {
+  display: flex;
+  gap: 2em;
+  padding: 0.5em 0;
+  align-items: center;
+  justify-content: end;
+}
+.status-selector {
+  display: flex;
+  gap: 0.5em;
+  align-items: center;
+}

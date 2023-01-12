@@ -1,0 +1,64 @@
+.reservation-form {
+  margin: 1em auto;
+  padding: 1em 2em;
+  border: 1px solid;
+}
+.reservation-form .form-header {
+  border-bottom: 1px solid;
+  margin-bottom: 2em;
+  text-align: center;
+}
+.reservation-form .section-label {
+  font-size: 1.5rem;
+  font-weight: bold;
+  width: 100%;
+  margin-top: 1em;
+  padding: 0.5em 0;
+}
+.reservation-form .section-subLabel {
+  font-weight: bold;
+  margin-top: 2em;
+  margin-bottom: 0.5em;
+}
+.reservation-form .section-row {
+  display: flex;
+  margin-bottom: 1em;
+  justify-content: space-between;
+  gap: 1em;
+}
+.reservation-form .section-row.schedule {
+  justify-content: start;
+}
+.reservation-form .section-row input {
+  width: 20em;
+}
+.reservation-form .section-row #arrivalTime,
+.reservation-form .section-row #departTime {
+  width: 6em;
+}
+.reservation-form .section-row .full-width {
+  flex: 1;
+}
+.reservation-form .section-row .total {
+  display: flex;
+  gap: 1em;
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-top: 2em;
+  margin-bottom: 1em;
+}
+.reservation-form .section-row textarea {
+  flex: 1;
+  padding: 0.5em;
+}
+.reservation-form .section-row textarea:focus {
+  outline: none;
+}
+.reservation-form .section-row .btn-submit-reservation {
+  margin: 0 auto;
+  background-color: royalblue;
+  border: none;
+  border-radius: 1em;
+  padding: 0.5em 1em;
+  color: white;
+}

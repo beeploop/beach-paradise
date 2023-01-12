@@ -1,0 +1,71 @@
+.room-card {
+    display: flex;
+    border: 1px solid black;
+    border-radius: 0.5em;
+    padding: 0.5em;
+    justify-content: space-between;
+}
+.room-card .room-img {
+    max-width: 20em;
+}
+.room-card .room-img img {
+    /* width: 100%; */
+    height: 100%;
+    object-fit: contain;
+}
+.room-card .room-overview {
+    width: 100%;
+    padding: 0 1em;
+}
+.room-card .room-overview h2 {
+    margin-top: 0;
+    margin-bottom: 0.5em;
+}
+.room-card .room-overview .room-tags {
+    font-size: 0.8rem;
+    line-height: 1.5rem;
+}
+.room-actions {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1em 2em;
+    border-left: 1px solid lightgray;
+}
+.room-actions .room-rate {
+    font-size: 2rem;
+}
+.room-actions .btn-reserve {
+    padding: 0.5em 2em;
+}
+.room-actions .btn-reserve,
+.room-actions .btn-view-room {
+    border: 1px solid royalblue;
+    border-radius: 0.4em;
+    width: 100%;
+    margin-top: 1em;
+    cursor: pointer;
+}
+.room-actions .btn-view-room {
+    padding: 0;
+}
+.room-actions .btn-view-room .view-room-link {
+    display: block;
+    padding: 0.5em 0.2em;
+    text-decoration: none;
+}
+.room-actions .btn-reserve {
+    background-color: royalblue;
+    color: white;
+}
+.room-actions .btn-reserve:hover {
+    background-color: mediumblue;
+}
+.room-actions .btn-view-room {
+    background-color: white;
+    color: royalblue;
+}
+.room-actions .btn-view-room .view-room-link:hover {
+    background-color: royalblue;
+    color: white;
+}

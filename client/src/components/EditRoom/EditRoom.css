@@ -1,0 +1,21 @@
+.editRoom-modal-container {
+  background-color: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.editRoom-modal-container.inactive {
+  display: none;
+}
+.editRoom-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 1em;
+  border-radius: 0.5em;
+  border: 1px solid;
+}

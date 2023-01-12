@@ -1,0 +1,14 @@
+:root {
+  --accent-clr: rgb(33, 83, 232);
+}
+body {
+  margin: 0;
+  box-sizing: border-box;
+}
+.main-container {
+  width: 100%;
+}
+.main {
+  margin-left: 12em;
+  padding: 0 1em;
+}

@@ -1,0 +1,29 @@
+.sidebar {
+  background-color: royalblue;
+  padding: 1em;
+  width: 12em;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.sidebar .nav-item {
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.sidebar .nav-item:hover {
+  background-color: var(--accent-clr);
+}
+.sidebar .nav-item .nav-link {
+  display: block;
+  padding: 0.5em;
+  border-bottom: 1px solid darkslateblue;
+  text-decoration: none;
+  color: white;
+  margin-top: 1em;
+  transition-duration: 0.5s;
+}
+.sidebar .nav-item .nav-link.active {
+  background-color: var(--accent-clr);
+}

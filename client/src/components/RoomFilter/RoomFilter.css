@@ -1,0 +1,55 @@
+.filter-container {
+  display: flex;
+  justify-content: end;
+  padding: 0.5em 0;
+}
+.filters {
+  display: flex;
+  gap: 1.5em;
+  padding: 0.5em 0;
+}
+.filter-item {
+  display: flex;
+  align-items: flex-end;
+  font-size: 1.1rem;
+}
+.filter-item select {
+  margin-left: 0.5em;
+  font-size: 1rem;
+}
+.filter-item select:focus {
+  outline: none;
+}
+.filters .btn-filter {
+  background-color: royalblue;
+  color: white;
+  border: none;
+  margin-left: 0.5em;
+  padding: 0.2em 0.5em;
+  border-radius: 0.5em;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+}
+.filter-item .date-selector {
+  margin-left: 0.5em;
+  border-bottom: 1px solid;
+}
+.date-selector .checkin,
+.date-selector .checkout {
+  width: 1.4em;
+  border: none;
+  color: white;
+}
+.date-selector .checkin,
+.date-selector .checkout:focus {
+  color: white;
+  outline: white;
+}
+.checkinDate,
+.checkoutDate {
+  width: 6.2em;
+  background-color: transparent;
+  border: none;
+  padding: 0 0.4em;
+  color: black;
+}

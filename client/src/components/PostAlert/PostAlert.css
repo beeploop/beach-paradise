@@ -1,0 +1,63 @@
+.alert-backdrop.inactive {
+  display: none;
+}
+.alert-backdrop {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.alert.inactive {
+  padding: 1em 2em;
+}
+.alert.active.good {
+  background-color: rgb(210, 255, 210);
+  border: 2px solid green;
+}
+.alert.active.bad {
+  background-color: rgb(255, 212, 210);
+  border: 2px solid red;
+}
+.alert.inactive {
+  display: none;
+}
+.alert-header {
+  margin: 1em 0;
+}
+.alert-header h3 {
+  font-weight: bold;
+}
+.symbol-container {
+  width: 3em;
+  height: 3em;
+  border-radius: 50%;
+}
+.symbol-container.good {
+  border: 2px solid green;
+}
+.symbol-container.bad {
+  border: 2px solid red;
+}
+.symbol-row {
+  display: flex;
+  justify-content: center;
+}
+.symbol.good {
+  display: flex;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: bold;
+  color: green;
+}
+.symbol.bad {
+  display: flex;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: bold;
+  color: red;
+}
