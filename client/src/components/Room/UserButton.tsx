@@ -1,17 +1,9 @@
-import { Link } from 'react-router-dom'
-import NewReserveButton from './NewReserveButton'
+import { Link } from 'react-router-dom';
+import NewReserveButton from './NewReserveButton';
 
 const UserButton = ({ room, handleReserveRoom, dates }: any) => {
     return (
         <>
-            {/* <button
-                className="btn-reserve"
-                onClick={() => {
-                    reserveRoom(room.roomNumber)
-                }}
-            >
-                Reserve
-            </button> */}
             <NewReserveButton
                 room={room}
                 dates={dates}
@@ -27,7 +19,7 @@ const UserButton = ({ room, handleReserveRoom, dates }: any) => {
                 </Link>
             </button>
         </>
-    )
-}
+    );
+};
 
-export default UserButton
+export default UserButton;

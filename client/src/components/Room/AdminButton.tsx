@@ -4,13 +4,13 @@ const AdminButton = ({ room, editRoom }: any) => {
             <button
                 className="btn-reserve"
                 onClick={() => {
-                    editRoom(room.roomNumber)
+                    editRoom(room.roomNumber);
                 }}
             >
                 Modify
             </button>
         </>
-    )
-}
+    );
+};
 
-export default AdminButton
+export default AdminButton;

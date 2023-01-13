@@ -1,5 +1,5 @@
-import { createStyles, Card, Avatar, Text, Group } from '@mantine/core'
-import { CarouselCard } from './CardCarousel'
+import { Avatar, Card, createStyles, Group, Text } from '@mantine/core';
+import { CarouselCard } from './CardCarousel';
 
 const useStyles = createStyles((theme) => ({
     card: {
@@ -16,17 +16,17 @@ const useStyles = createStyles((theme) => ({
     body: {
         padding: theme.spacing.md,
     },
-}))
+}));
 
 interface ArticleCardVerticalProps {
-    image: string
-    category: string
-    title: string
-    date: string
+    image: string;
+    category: string;
+    title: string;
+    date: string;
     author: {
-        name: string
-        avatar: string
-    }
+        name: string;
+        avatar: string;
+    };
 }
 
 export function ArticleCardVertical({
@@ -35,11 +35,19 @@ export function ArticleCardVertical({
     date,
     author,
 }: ArticleCardVerticalProps) {
-    const { classes } = useStyles()
+    const { classes } = useStyles();
 
     return (
-        <Card withBorder radius="md" p={0} className={classes.card}>
-            <Group noWrap spacing={0}>
+        <Card
+            withBorder
+            radius="md"
+            p={0}
+            className={classes.card}
+        >
+            <Group
+                noWrap
+                spacing={0}
+            >
                 <CarouselCard />
                 <div className={classes.body}>
                     <Text
@@ -50,23 +58,42 @@ export function ArticleCardVertical({
                     >
                         {category}
                     </Text>
-                    <Text className={classes.title} mt="xs" mb="md">
+                    <Text
+                        className={classes.title}
+                        mt="xs"
+                        mb="md"
+                    >
                         {title}
                     </Text>
-                    <Group noWrap spacing="xs">
-                        <Group spacing="xs" noWrap>
-                            <Avatar size={20} src={author.avatar} />
+                    <Group
+                        noWrap
+                        spacing="xs"
+                    >
+                        <Group
+                            spacing="xs"
+                            noWrap
+                        >
+                            <Avatar
+                                size={20}
+                                src={author.avatar}
+                            />
                             <Text size="xs">{author.name}</Text>
                         </Group>
-                        <Text size="xs" color="dimmed">
+                        <Text
+                            size="xs"
+                            color="dimmed"
+                        >
                             •
                         </Text>
-                        <Text size="xs" color="dimmed">
+                        <Text
+                            size="xs"
+                            color="dimmed"
+                        >
                             {date}
                         </Text>
                     </Group>
                 </div>
             </Group>
         </Card>
-    )
+    );
 }

@@ -1,14 +1,7 @@
-import { useForm } from '@mantine/form'
-import {
-    NumberInput,
-    TextInput,
-    Button,
-    Text,
-    Flex,
-    Space,
-} from '@mantine/core'
-import { DateRangePicker, DateRangePickerValue } from '@mantine/dates'
-import { useState } from 'react'
+import { Button, Flex, Text, TextInput } from '@mantine/core';
+import { DateRangePicker, DateRangePickerValue } from '@mantine/dates';
+import { useForm } from '@mantine/form';
+import { useState } from 'react';
 
 function NewCottageReservationForm({
     cottage,
@@ -19,7 +12,7 @@ function NewCottageReservationForm({
     const [date, setDate] = useState<DateRangePickerValue>([
         new Date(dates[0]),
         new Date(dates[1]),
-    ])
+    ]);
     const form = useForm({
         initialValues: {
             cottageId: cottage.cottageId,
@@ -52,15 +45,12 @@ function NewCottageReservationForm({
                 value.length < 11 ? 'Provide a valid phone' : null,
             email: (value) =>
                 /^\S+@\S+$/.test(value) ? null : 'Invalid email',
-            // adults: (value) =>
-            //     value < 1 ? 'There should be at least 1 adult' : null,
-            // kids: (value) => (value < 0 ? 'Value cannot be negative' : null),
         },
-    })
+    });
 
     return (
         <form
-            onSubmit={form.onSubmit((values) => {
+            onSubmit={form.onSubmit(() => {
                 const details = {
                     cottageId: form.getInputProps('cottageId').value,
                     firstname: form.getInputProps('firstname').value,
@@ -74,19 +64,29 @@ function NewCottageReservationForm({
                     rate: form.getInputProps('rate').value,
                     checkin: date[0],
                     checkout: date[1],
-                }
-                handleReserveCottage(details)
-                closeModal()
+                };
+                handleReserveCottage(details);
+                closeModal();
             })}
         >
-            <Flex justify="center" mb="md">
-                <Text fz="xl" fw="bold">
+            <Flex
+                justify="center"
+                mb="md"
+            >
+                <Text
+                    fz="xl"
+                    fw="bold"
+                >
                     Reserve Cottage {cottage.name}
                 </Text>
             </Flex>
             <Text fz="xl">Fullname</Text>
 
-            <Flex justify="center" gap="md" mb="sm">
+            <Flex
+                justify="center"
+                gap="md"
+                mb="sm"
+            >
                 <TextInput
                     label="First Name"
                     placeholder="First Name"
@@ -103,7 +103,10 @@ function NewCottageReservationForm({
 
             <Text fz="xl">Address</Text>
 
-            <Flex justify="center" mb="md">
+            <Flex
+                justify="center"
+                mb="md"
+            >
                 <TextInput
                     label="Street/House No."
                     placeholder="street"
@@ -111,7 +114,11 @@ function NewCottageReservationForm({
                     {...form.getInputProps('street')}
                 />
             </Flex>
-            <Flex justify="center" gap="md" mb="md">
+            <Flex
+                justify="center"
+                gap="md"
+                mb="md"
+            >
                 <TextInput
                     label="City"
                     placeholder="city"
@@ -125,7 +132,10 @@ function NewCottageReservationForm({
                     {...form.getInputProps('state')}
                 />
             </Flex>
-            <Flex justify="center" mb="md">
+            <Flex
+                justify="center"
+                mb="md"
+            >
                 <TextInput
                     label="Postal Code"
                     placeholder="postal"
@@ -136,7 +146,11 @@ function NewCottageReservationForm({
 
             <Text fz="xl">Contact</Text>
 
-            <Flex justify="center" gap="md" mb="md">
+            <Flex
+                justify="center"
+                gap="md"
+                mb="md"
+            >
                 <TextInput
                     label="Phone"
                     placeholder="09xxxxxxxxx"
@@ -166,12 +180,15 @@ function NewCottageReservationForm({
             </Flex>
 
             <Flex justify="end">
-                <Button type="submit" mt="sm">
+                <Button
+                    type="submit"
+                    mt="sm"
+                >
                     Submit
                 </Button>
             </Flex>
         </form>
-    )
+    );
 }
 
-export default NewCottageReservationForm
+export default NewCottageReservationForm;

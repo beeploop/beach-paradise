@@ -1,13 +1,12 @@
-import { useState } from 'react'
-import { Modal, Button, Group } from '@mantine/core'
-// import EditCottageForm from './EditCottageForm'
-import NewEditRoomForm from './NewEditRoomForm'
+import { Button, Group, Modal } from '@mantine/core';
+import { useState } from 'react';
+import NewEditRoomForm from './NewEditRoomForm';
 
 function NewEditRoom({ room, handleModification }: any) {
-    const [opened, setOpened] = useState(false)
+    const [opened, setOpened] = useState(false);
 
     function closeOnSubmit() {
-        setOpened(false)
+        setOpened(false);
     }
 
     return (
@@ -25,12 +24,15 @@ function NewEditRoom({ room, handleModification }: any) {
             </Modal>
 
             <Group position="center">
-                <Button size="md" onClick={() => setOpened(true)}>
+                <Button
+                    size="md"
+                    onClick={() => setOpened(true)}
+                >
                     Modify
                 </Button>
             </Group>
         </>
-    )
+    );
 }
 
-export default NewEditRoom
+export default NewEditRoom;

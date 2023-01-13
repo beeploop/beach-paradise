@@ -1,4 +1,4 @@
-import { Text, Progress, Card, createStyles } from '@mantine/core'
+import { Card, createStyles, Progress, Text } from '@mantine/core';
 
 const useStyles = createStyles((theme) => ({
     card: {
@@ -22,12 +22,17 @@ const useStyles = createStyles((theme) => ({
     progressTrack: {
         backgroundColor: theme.fn.rgba(theme.white, 0.4),
     },
-}))
+}));
 
 export function MonthlyGoal({ income }: any) {
-    const { classes } = useStyles()
+    const { classes } = useStyles();
     return (
-        <Card withBorder radius="md" p="xl" className={classes.card}>
+        <Card
+            withBorder
+            radius="md"
+            p="xl"
+            className={classes.card}
+        >
             <Text
                 size="xs"
                 transform="uppercase"
@@ -36,7 +41,11 @@ export function MonthlyGoal({ income }: any) {
             >
                 Monthly goal
             </Text>
-            <Text size="lg" weight={500} className={classes.stats}>
+            <Text
+                size="lg"
+                weight={500}
+                className={classes.stats}
+            >
                 ₱{income.toLocaleString()} / ₱100,000
             </Text>
             <Progress
@@ -50,5 +59,5 @@ export function MonthlyGoal({ income }: any) {
                 }}
             />
         </Card>
-    )
+    );
 }

@@ -1,13 +1,12 @@
 import {
-    Box,
     Button,
     Flex,
     NumberInput,
     Space,
     Textarea,
     TextInput,
-} from '@mantine/core'
-import { useForm } from '@mantine/form'
+} from '@mantine/core';
+import { useForm } from '@mantine/form';
 
 function EditRoomForm({ cottage, handleModification, closeModal }: any) {
     const form = useForm({
@@ -25,7 +24,7 @@ function EditRoomForm({ cottage, handleModification, closeModal }: any) {
             desc: (value) =>
                 value.length > 147 ? 'Description too long' : null,
         },
-    })
+    });
 
     return (
         <form
@@ -35,8 +34,8 @@ function EditRoomForm({ cottage, handleModification, closeModal }: any) {
                     name: form.getInputProps('name').value,
                     rate: form.getInputProps('rate').value,
                     desc: form.getInputProps('desc').value,
-                })
-                closeModal()
+                });
+                closeModal();
             })}
         >
             <TextInput
@@ -57,11 +56,14 @@ function EditRoomForm({ cottage, handleModification, closeModal }: any) {
                 {...form.getInputProps('desc')}
                 minRows={6}
             />
-            <Flex justify="flex-end" mt="sm">
+            <Flex
+                justify="flex-end"
+                mt="sm"
+            >
                 <Button type="submit">Apply</Button>
             </Flex>
         </form>
-    )
+    );
 }
 
-export default EditRoomForm
+export default EditRoomForm;

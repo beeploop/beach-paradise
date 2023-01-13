@@ -1,26 +1,26 @@
-import { useForm } from '@mantine/form'
 import {
-    TextInput,
-    PasswordInput,
     Anchor,
-    Paper,
-    Title,
+    Button,
     Container,
     Group,
-    Button,
     LoadingOverlay,
-} from '@mantine/core'
-import { useState } from 'react'
-import LoginAlert from './LoginAlert'
-import { useNavigate } from 'react-router-dom'
+    Paper,
+    PasswordInput,
+    TextInput,
+    Title,
+} from '@mantine/core';
+import { useForm } from '@mantine/form';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import LoginAlert from './LoginAlert';
 
 interface TPropFunction {
-    setAuth: Function
+    setAuth: Function;
 }
 
 export function AuthenticationTitle({ setAuth }: TPropFunction) {
-    const [error, setError] = useState(false)
-    const [isSubmitting, setIsSubmitting] = useState(false)
+    const [error, setError] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const form = useForm({
         initialValues: { email: '', password: '' },
 
@@ -30,12 +30,12 @@ export function AuthenticationTitle({ setAuth }: TPropFunction) {
             password: (value) =>
                 value.length <= 0 ? 'Please input password' : null,
         },
-    })
+    });
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     const validateCredentials = async () => {
-        setIsSubmitting(true)
+        setIsSubmitting(true);
         const response = await fetch(
             // 'http://localhost:5000/api/admin/authenticate',
             'https://beach-reservation.onrender.com/api/admin/authenticate',
@@ -49,16 +49,19 @@ export function AuthenticationTitle({ setAuth }: TPropFunction) {
                     password: form.getInputProps('password').value,
                 }),
             }
-        )
-        const { result } = await response.json()
-        setIsSubmitting(false)
-        if (!result) return setError(true)
-        setAuth(result)
-        navigate('/admin/dashboard')
-    }
+        );
+        const { result } = await response.json();
+        setIsSubmitting(false);
+        if (!result) return setError(true);
+        setAuth(result);
+        navigate('/admin/dashboard');
+    };
 
     return (
-        <Container size={420} my={40}>
+        <Container
+            size={420}
+            my={40}
+        >
             <LoadingOverlay
                 visible={isSubmitting}
                 // overlayBlur={1}
@@ -100,7 +103,10 @@ export function AuthenticationTitle({ setAuth }: TPropFunction) {
                         required
                         mt="md"
                     />
-                    <Group position="apart" mt="lg">
+                    <Group
+                        position="apart"
+                        mt="lg"
+                    >
                         {/* <Checkbox label="Remember me" sx={{ lineHeight: 1 }} /> */}
                         <Anchor<'a'>
                             onClick={(event) => event.preventDefault()}
@@ -110,11 +116,15 @@ export function AuthenticationTitle({ setAuth }: TPropFunction) {
                             Forgot password?
                         </Anchor>
                     </Group>
-                    <Button type="submit" fullWidth mt="xl">
+                    <Button
+                        type="submit"
+                        fullWidth
+                        mt="xl"
+                    >
                         Sign in
                     </Button>
                 </form>
             </Paper>
         </Container>
-    )
+    );
 }

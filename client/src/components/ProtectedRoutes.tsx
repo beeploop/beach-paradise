@@ -1,13 +1,13 @@
-import { Outlet, Navigate } from 'react-router-dom'
+import { Navigate, Outlet } from 'react-router-dom';
 
 interface TPropObject {
-    auth: { islogged: boolean; details: {} }
+    auth: { islogged: boolean; details: {} };
 }
 
 function ProtectedRoutes({ auth }: TPropObject) {
-    console.log('is Logged?: ', auth.islogged)
+    console.log('is Logged?: ', auth.islogged);
 
-    return auth.islogged ? <Outlet /> : <Navigate to={'/auth'} />
+    return auth.islogged ? <Outlet /> : <Navigate to={'/auth'} />;
 }
 
-export default ProtectedRoutes
+export default ProtectedRoutes;

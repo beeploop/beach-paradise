@@ -1,11 +1,11 @@
 import {
+    Button,
+    Flex,
+    NativeSelect,
     NumberInput,
     Textarea,
-    Button,
-    NativeSelect,
-    Flex,
-} from '@mantine/core'
-import { useForm } from '@mantine/form'
+} from '@mantine/core';
+import { useForm } from '@mantine/form';
 
 function NewEditRoomForm({ room, handleModification, closeModal }: any) {
     const form = useForm({
@@ -24,16 +24,20 @@ function NewEditRoomForm({ room, handleModification, closeModal }: any) {
                 value < 1 ? 'There should be at least 1 bed' : null,
             rate: (value) => (value < 0 ? 'Rate should not be negative' : null),
         },
-    })
+    });
 
     return (
         <form
             onSubmit={form.onSubmit((values) => {
-                handleModification(values)
-                closeModal()
+                handleModification(values);
+                closeModal();
             })}
         >
-            <Flex justify="center" gap="md" mt="md">
+            <Flex
+                justify="center"
+                gap="md"
+                mt="md"
+            >
                 <NativeSelect
                     sx={{ flex: 1 }}
                     label="Room Type"
@@ -47,7 +51,11 @@ function NewEditRoomForm({ room, handleModification, closeModal }: any) {
                     {...form.getInputProps('status')}
                 />
             </Flex>
-            <Flex justify="center" gap="md" mt="md">
+            <Flex
+                justify="center"
+                gap="md"
+                mt="md"
+            >
                 <NumberInput
                     sx={{ flex: 1 }}
                     label="Number of beds"
@@ -68,12 +76,15 @@ function NewEditRoomForm({ room, handleModification, closeModal }: any) {
                 {...form.getInputProps('desc')}
             />
             <Flex justify="end">
-                <Button type="submit" mt="md">
+                <Button
+                    type="submit"
+                    mt="md"
+                >
                     Apply
                 </Button>
             </Flex>
         </form>
-    )
+    );
 }
 
-export default NewEditRoomForm
+export default NewEditRoomForm;

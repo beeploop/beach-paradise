@@ -1,20 +1,25 @@
-import { useState } from 'react'
-import { Modal, Button, Group, Flex } from '@mantine/core'
-import CottageForm from './CottageForm'
+import { Button, Flex, Group, Modal } from '@mantine/core';
+import { useState } from 'react';
+import CottageForm from './CottageForm';
 
 interface TPropFunction {
-    handleSubmit: Function
+    handleSubmit: Function;
 }
 
 function AddCottage({ handleSubmit }: TPropFunction) {
-    const [opened, setOpened] = useState(false)
+    const [opened, setOpened] = useState(false);
 
     function closeModal() {
-        setOpened(false)
+        setOpened(false);
     }
 
     return (
-        <Flex align="center" justify="flex-end" mt="xs" mb="lg">
+        <Flex
+            align="center"
+            justify="flex-end"
+            mt="xs"
+            mb="lg"
+        >
             <Modal
                 opened={opened}
                 onClose={() => setOpened(false)}
@@ -36,7 +41,7 @@ function AddCottage({ handleSubmit }: TPropFunction) {
                 </Button>
             </Group>
         </Flex>
-    )
+    );
 }
 
-export default AddCottage
+export default AddCottage;

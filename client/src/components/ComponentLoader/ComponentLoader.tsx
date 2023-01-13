@@ -1,4 +1,4 @@
-import './ComponentLoader.css'
+import './ComponentLoader.css';
 
 const ComponenLoader = () => {
     return (
@@ -16,7 +16,7 @@ const ComponenLoader = () => {
             </div>
             <p>Please wait...</p>
         </div>
-    )
-}
+    );
+};
 
-export default ComponenLoader
+export default ComponenLoader;

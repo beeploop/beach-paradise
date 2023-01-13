@@ -1,13 +1,13 @@
-import { Outlet, Navigate } from 'react-router-dom'
-import AdminSidebar from './Sidebar/AdminSidebar'
-import './Content-Item-Style.css'
+import { Navigate, Outlet } from 'react-router-dom';
+import './Content-Item-Style.css';
+import AdminSidebar from './Sidebar/AdminSidebar';
 
 interface TPropObject {
-    auth: { isLogged: boolean; details: {} }
+    auth: { isLogged: boolean; details: {} };
 }
 
 const AdminContentHolder = ({ auth }: TPropObject) => {
-    console.log('is Logged: ', auth.isLogged)
+    console.log('is Logged: ', auth.isLogged);
 
     return auth.isLogged ? (
         <div className="main-container">
@@ -16,7 +16,7 @@ const AdminContentHolder = ({ auth }: TPropObject) => {
         </div>
     ) : (
         <Navigate to={'/auth'} />
-    )
-}
+    );
+};
 
-export default AdminContentHolder
+export default AdminContentHolder;

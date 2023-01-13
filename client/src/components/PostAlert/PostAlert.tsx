@@ -1,4 +1,4 @@
-import './PostAlert.css'
+import './PostAlert.css';
 
 const PostAlert = ({ closeAlert, isVisible, status }: any) => {
     return (
@@ -52,7 +52,7 @@ const PostAlert = ({ closeAlert, isVisible, status }: any) => {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default PostAlert
+export default PostAlert;

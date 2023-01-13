@@ -1,4 +1,4 @@
-import './PostAlert.css'
+import './PostAlert.css';
 
 const PostAlertAdmin = ({ closeAlert, isVisible, status }: any) => {
     return (
@@ -23,13 +23,6 @@ const PostAlertAdmin = ({ closeAlert, isVisible, status }: any) => {
                     )}
                 </div>
                 <div className="alert-body">
-                    {/* <div className="message">
-            {status ? (
-              <p className="lead text-center"> You will shortly receive an Email to confirm your reservation   </p>
-            ) : (
-              <p>Room reservation unsuccessful</p>
-            )}
-          </div> */}
                     {status ? (
                         <div className="symbol-row">
                             <div className="symbol-container good">
@@ -46,7 +39,7 @@ const PostAlertAdmin = ({ closeAlert, isVisible, status }: any) => {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default PostAlertAdmin
+export default PostAlertAdmin;

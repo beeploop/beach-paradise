@@ -1,12 +1,12 @@
-import { useState } from 'react'
-import { Modal, Button, Group } from '@mantine/core'
-import NewAddRoomForm from './NewAddRoomForm'
+import { Button, Group, Modal } from '@mantine/core';
+import { useState } from 'react';
+import NewAddRoomForm from './NewAddRoomForm';
 
 function NewAddRoom({ handleSubmit }: any) {
-    const [opened, setOpened] = useState(false)
+    const [opened, setOpened] = useState(false);
 
     function closeModal() {
-        setOpened(false)
+        setOpened(false);
     }
 
     return (
@@ -32,7 +32,7 @@ function NewAddRoom({ handleSubmit }: any) {
                 </Button>
             </Group>
         </>
-    )
+    );
 }
 
-export default NewAddRoom
+export default NewAddRoom;

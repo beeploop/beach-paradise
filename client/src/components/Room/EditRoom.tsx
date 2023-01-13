@@ -1,9 +1,9 @@
-import { useState } from 'react'
-import { Modal, Button, Group } from '@mantine/core'
-import EditRoomForm from './EditRoomForm'
+import { Button, Group, Modal } from '@mantine/core';
+import { useState } from 'react';
+import EditRoomForm from './EditRoomForm';
 
 function EditRoom() {
-    const [opened, setOpened] = useState(false)
+    const [opened, setOpened] = useState(false);
 
     return (
         <>
@@ -20,12 +20,15 @@ function EditRoom() {
             </Modal>
 
             <Group position="center">
-                <Button size="md" onClick={() => setOpened(true)}>
+                <Button
+                    size="md"
+                    onClick={() => setOpened(true)}
+                >
                     Modify
                 </Button>
             </Group>
         </>
-    )
+    );
 }
 
-export default EditRoom
+export default EditRoom;

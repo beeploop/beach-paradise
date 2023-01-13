@@ -1,12 +1,12 @@
-import Carousel from '../components/Homepage-Bootstrap-Styled/Carousel'
-import Feedbacks from '../components/Homepage-Bootstrap-Styled/Feedbacks'
-import FAQs from '../components/Homepage-Bootstrap-Styled/FAQs'
-import About from '../components/Homepage-Bootstrap-Styled/About'
-import Footer from '../components/Homepage-Bootstrap-Styled/Footer'
-import Tribute from '../components/Homepage-Bootstrap-Styled/Tribute'
-import Hero from '../components/Homepage-Bootstrap-Styled/Hero'
-import Header from '../components/Homepage-Bootstrap-Styled/Header'
-import Experience from '../components/Homepage-Bootstrap-Styled/Experience'
+import About from '../components/Homepage-Bootstrap-Styled/About';
+import Carousel from '../components/Homepage-Bootstrap-Styled/Carousel';
+import Experience from '../components/Homepage-Bootstrap-Styled/Experience';
+import FAQs from '../components/Homepage-Bootstrap-Styled/FAQs';
+import Feedbacks from '../components/Homepage-Bootstrap-Styled/Feedbacks';
+import Footer from '../components/Homepage-Bootstrap-Styled/Footer';
+import Header from '../components/Homepage-Bootstrap-Styled/Header';
+import Hero from '../components/Homepage-Bootstrap-Styled/Hero';
+import Tribute from '../components/Homepage-Bootstrap-Styled/Tribute';
 
 const Homepage = () => {
     return (
@@ -18,7 +18,10 @@ const Homepage = () => {
                 <Experience />
                 <Carousel />
                 <div className="col-md-12">
-                    <div className="feedback my-5 p-4" id="feedback">
+                    <div
+                        className="feedback my-5 p-4"
+                        id="feedback"
+                    >
                         <Feedbacks />
                         <FAQs />
                     </div>
@@ -27,7 +30,7 @@ const Homepage = () => {
                 <Footer />
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Homepage
+export default Homepage;

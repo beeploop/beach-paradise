@@ -1,11 +1,11 @@
 import {
-    createStyles,
-    Title,
-    Text,
     Button,
     Container,
+    createStyles,
     Group,
-} from '@mantine/core'
+    Text,
+    Title,
+} from '@mantine/core';
 
 const useStyles = createStyles((theme) => ({
     root: {
@@ -46,10 +46,10 @@ const useStyles = createStyles((theme) => ({
         marginTop: theme.spacing.xl,
         marginBottom: theme.spacing.xl * 1.5,
     },
-}))
+}));
 
 export function NotFoundTitle() {
-    const { classes } = useStyles()
+    const { classes } = useStyles();
 
     return (
         <Container className={classes.root}>
@@ -67,10 +67,15 @@ export function NotFoundTitle() {
                 the address, or the page has been moved to another URL.
             </Text>
             <Group position="center">
-                <Button component="a" href="/" variant="subtle" size="md">
+                <Button
+                    component="a"
+                    href="/"
+                    variant="subtle"
+                    size="md"
+                >
                     Take me back to home page
                 </Button>
             </Group>
         </Container>
-    )
+    );
 }

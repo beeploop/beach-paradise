@@ -1,10 +1,17 @@
-import about from '../../Assets/images/about.jpg'
+import about from '../../Assets/images/about.jpg';
 
 const About = () => {
     return (
-        <div className="row" id="about">
+        <div
+            className="row"
+            id="about"
+        >
             <div className="col-md-6 my-5 p-4">
-                <img src={about} className="img-fluid aboutimg" alt="" />
+                <img
+                    src={about}
+                    className="img-fluid aboutimg"
+                    alt=""
+                />
             </div>
 
             <div className="col-md-6 my-5 p-4">
@@ -26,7 +33,7 @@ const About = () => {
                 <i className="bi bi-youtube text-dark px-3"></i>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default About
+export default About;

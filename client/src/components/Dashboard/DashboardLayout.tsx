@@ -1,62 +1,65 @@
-import { Box, Flex, LoadingOverlay } from '@mantine/core'
-import { useEffect, useState } from 'react'
-import Header from './Header'
-import { MonthlyGoal } from './MonthlyGoal'
-import { StatsGrid } from './StatsGrid'
-import { StatsRing } from './StatsRing'
+import { Box, Flex, LoadingOverlay } from '@mantine/core';
+import { useEffect, useState } from 'react';
+import Header from './Header';
+import { MonthlyGoal } from './MonthlyGoal';
+import { StatsGrid } from './StatsGrid';
+import { StatsRing } from './StatsRing';
 
 type TData = {
-    cottageReservations: number
-    roomReservations: number
-    users: number
-    cottageIncome: { _sum: { price: number } }
-    roomIncome: { _sum: { price: number } }
-    totalRooms: number
-    totalCottages: number
-    pendingRoom: number
-    pendingCottage: number
-}
+    cottageReservations: number;
+    roomReservations: number;
+    users: number;
+    cottageIncome: { _sum: { price: number } };
+    roomIncome: { _sum: { price: number } };
+    totalRooms: number;
+    totalCottages: number;
+    pendingRoom: number;
+    pendingCottage: number;
+};
 
 function DashboardLayout() {
-    const [data, setData] = useState<TData>()
-    const [isLoading, setIsLoading] = useState(false)
+    const [data, setData] = useState<TData>();
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
-        fetchReservations()
-    }, [])
+        fetchReservations();
+    }, []);
 
     function fetchReservations() {
-        setIsLoading(true)
+        setIsLoading(true);
         // fetch('http://localhost:5000/api/admin/stats')
         fetch('https://beach-reservation.onrender.com/api/admin/stats')
             .then((res) => res.json())
             .then((data) => {
-                setData(data)
-                console.log(data)
-                setIsLoading(false)
-            })
+                setData(data);
+                console.log(data);
+                setIsLoading(false);
+            });
     }
 
     function computeIncome() {
-        return data?.cottageIncome._sum.price + data?.roomIncome._sum.price
+        return data?.cottageIncome._sum.price + data?.roomIncome._sum.price;
     }
 
     function computeReservation() {
-        return data?.roomReservations + data?.cottageReservations
+        return data?.roomReservations + data?.cottageReservations;
     }
 
     function computeProgress(whole: number, part: number) {
-        if (part < 1) return 0
-        return whole / part
+        if (part < 1) return 0;
+        return whole / part;
     }
 
     function computePending() {
-        return data?.pendingCottage + data?.pendingRoom
+        return data?.pendingCottage + data?.pendingRoom;
     }
 
     return (
         <div>
-            <Flex gap="xl" mt="sm">
+            <Flex
+                gap="xl"
+                mt="sm"
+            >
                 <LoadingOverlay
                     visible={isLoading}
                     loaderProps={{ variant: 'dots' }}
@@ -115,7 +118,7 @@ function DashboardLayout() {
                 <MonthlyGoal income={computeIncome()} />
             </Flex>
         </div>
-    )
+    );
 }
 
-export default DashboardLayout
+export default DashboardLayout;

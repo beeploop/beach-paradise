@@ -1,4 +1,4 @@
-import { Flex, Image } from '@mantine/core'
+import { Image } from '@mantine/core';
 
 function Header() {
     return (
@@ -20,7 +20,7 @@ function Header() {
                 }}
             />
         </div>
-    )
+    );
 }
 
-export default Header
+export default Header;

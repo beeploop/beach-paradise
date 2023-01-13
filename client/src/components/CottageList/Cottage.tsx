@@ -1,9 +1,7 @@
-import UserButton from '../Room/UserButton';
-import '../Room/Room.css';
-import EditCottage from './EditCottage';
-import ReserveCottage from '../ViewCottage/ReserveCottage';
-import ReserveButton from '../ViewCottage/ReserveButton';
 import { Link } from 'react-router-dom';
+import '../Room/Room.css';
+import ReserveButton from '../ViewCottage/ReserveButton';
+import EditCottage from './EditCottage';
 
 const Cottage = ({
     cottage,
@@ -17,7 +15,7 @@ const Cottage = ({
             className="room-card"
             style={{ marginBottom: '1em' }}
         >
-            <div className="room-img">
+            <div className="cottage-img">
                 <img src="https://thumbs.dreamstime.com/b/tropical-beach-landscape-wooden-bridge-house-water-maldive-79617311.jpg" />
             </div>
             <div className="room-overview">

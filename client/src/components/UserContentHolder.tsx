@@ -1,6 +1,6 @@
-import { Outlet } from 'react-router-dom'
-import UserSidebar from './Sidebar/UserSidebar'
-import './Content-Item-Style.css'
+import { Outlet } from 'react-router-dom';
+import './Content-Item-Style.css';
+import UserSidebar from './Sidebar/UserSidebar';
 
 const ContentHolder = () => {
     return (
@@ -8,7 +8,7 @@ const ContentHolder = () => {
             <UserSidebar />
             <Outlet />
         </div>
-    )
-}
+    );
+};
 
-export default ContentHolder
+export default ContentHolder;

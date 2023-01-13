@@ -1,10 +1,13 @@
-import { Link } from 'react-router-dom'
-import ReserveButton from './ReserveButton'
+import { Link } from 'react-router-dom';
+import ReserveButton from './ReserveButton';
 
 const ReserveCottage = ({ cottage, handleSubmit }: any) => {
     return (
         <>
-            <ReserveButton cottage={cottage} handleSubmit={handleSubmit} />
+            <ReserveButton
+                cottage={cottage}
+                handleSubmit={handleSubmit}
+            />
             <button className="btn-view-room">
                 <Link
                     to={`/service/cottage/${cottage.cottageId}`}
@@ -14,7 +17,7 @@ const ReserveCottage = ({ cottage, handleSubmit }: any) => {
                 </Link>
             </button>
         </>
-    )
-}
+    );
+};
 
-export default ReserveCottage
+export default ReserveCottage;

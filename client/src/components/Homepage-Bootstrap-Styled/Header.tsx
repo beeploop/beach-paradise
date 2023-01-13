@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 const Header = () => {
     return (
@@ -15,7 +15,10 @@ const Header = () => {
                 >
                     <span className="navbar-toggler-icon text-light"></span>
                 </button>
-                <div className="collapse navbar-collapse" id="navbarText">
+                <div
+                    className="collapse navbar-collapse"
+                    id="navbarText"
+                >
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li>
                             <a
@@ -27,12 +30,18 @@ const Header = () => {
                             </a>
                         </li>
                         <li>
-                            <a className="nav-link text-light" href="#feedback">
+                            <a
+                                className="nav-link text-light"
+                                href="#feedback"
+                            >
                                 Feedbacks
                             </a>
                         </li>
                         <li>
-                            <a className="nav-link text-light" href="#about">
+                            <a
+                                className="nav-link text-light"
+                                href="#about"
+                            >
                                 About Us
                             </a>
                         </li>
@@ -49,7 +58,7 @@ const Header = () => {
                 </div>
             </div>
         </nav>
-    )
-}
+    );
+};
 
-export default Header
+export default Header;

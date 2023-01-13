@@ -1,33 +1,38 @@
 import {
-    RingProgress,
-    Text,
-    SimpleGrid,
-    Paper,
     Center,
     Group,
-} from '@mantine/core'
-import { IconArrowUpRight, IconArrowDownRight } from '@tabler/icons'
+    Paper,
+    RingProgress,
+    SimpleGrid,
+    Text,
+} from '@mantine/core';
+import { IconArrowDownRight, IconArrowUpRight } from '@tabler/icons';
 
 interface StatsRingProps {
     data: {
-        label: string
-        stats: string
-        progress: number
-        color: string
-        icon: 'up' | 'down'
-    }[]
+        label: string;
+        stats: string;
+        progress: number;
+        color: string;
+        icon: 'up' | 'down';
+    }[];
 }
 
 const icons = {
     up: IconArrowUpRight,
     down: IconArrowDownRight,
-}
+};
 
 export function StatsRing({ data }: StatsRingProps) {
     const stats = data.map((stat) => {
-        const Icon = icons[stat.icon]
+        const Icon = icons[stat.icon];
         return (
-            <Paper withBorder radius="md" p="xs" key={stat.label}>
+            <Paper
+                withBorder
+                radius="md"
+                p="xs"
+                key={stat.label}
+            >
                 <Group>
                     <RingProgress
                         size={80}
@@ -36,7 +41,10 @@ export function StatsRing({ data }: StatsRingProps) {
                         sections={[{ value: stat.progress, color: stat.color }]}
                         label={
                             <Center>
-                                <Icon size={22} stroke={1.5} />
+                                <Icon
+                                    size={22}
+                                    stroke={1.5}
+                                />
                             </Center>
                         }
                     />
@@ -50,17 +58,23 @@ export function StatsRing({ data }: StatsRingProps) {
                         >
                             {stat.label}
                         </Text>
-                        <Text weight={700} size="xl">
+                        <Text
+                            weight={700}
+                            size="xl"
+                        >
                             {stat.stats}
                         </Text>
                     </div>
                 </Group>
             </Paper>
-        )
-    })
+        );
+    });
     return (
-        <SimpleGrid cols={1} breakpoints={[{ maxWidth: 'sm', cols: 1 }]}>
+        <SimpleGrid
+            cols={1}
+            breakpoints={[{ maxWidth: 'sm', cols: 1 }]}
+        >
             {stats}
         </SimpleGrid>
-    )
+    );
 }

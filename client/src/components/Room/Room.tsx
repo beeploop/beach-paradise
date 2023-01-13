@@ -1,8 +1,6 @@
-import UserButton from './UserButton'
-import AdminButton from './AdminButton'
-import './Room.css'
-import EditRoom from './EditRoom'
-import NewEditRoom from '../EditRoom/NewEditRoom'
+import NewEditRoom from '../EditRoom/NewEditRoom';
+import './Room.css';
+import UserButton from './UserButton';
 
 const Room = ({
     room,
@@ -27,13 +25,11 @@ const Room = ({
                 <div className="room-rate">₱{room.price}</div>
                 <div className="room-cta">
                     {isAdmin ? (
-                        // <AdminButton room={room} editRoom={editRoom} />
                         <NewEditRoom
                             room={room}
                             handleModification={handleModification}
                         />
                     ) : (
-                        // <EditRoom />
                         <UserButton
                             room={room}
                             handleReserveRoom={handleReserveRoom}
@@ -43,7 +39,7 @@ const Room = ({
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Room
+export default Room;

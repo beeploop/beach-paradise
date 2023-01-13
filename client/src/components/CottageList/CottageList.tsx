@@ -1,11 +1,11 @@
-import Cottage from './Cottage'
+import Cottage from './Cottage';
 
 type TCottage = {
-    cottageId: Number
-    name: String
-    rate: Number
-    desc: String
-}
+    cottageId: Number;
+    name: String;
+    rate: Number;
+    desc: String;
+};
 
 function CottageList({
     cottages,
@@ -31,7 +31,7 @@ function CottageList({
                 <p style={{ textAlign: 'center' }}>No available cottages</p>
             )}
         </>
-    )
+    );
 }
 
-export default CottageList
+export default CottageList;

@@ -1,28 +1,27 @@
-import { useEffect, useState } from 'react'
-import Room from '../Room/Room'
-import ComponentLoader from '../ComponentLoader/ComponentLoader'
-import './RoomList.css'
+import { useEffect, useState } from 'react';
+import ComponentLoader from '../ComponentLoader/ComponentLoader';
+import Room from '../Room/Room';
+import './RoomList.css';
 
 const RoomList = ({
     roomsData,
     handleReserveRoom,
     isLoading,
     isAdmin,
-    // editRoom,
     handleModification,
     dates,
 }: any) => {
-    const [rooms, setRooms] = useState<any[]>([])
-    const [roomLoading, setRoomLoading] = useState(false)
+    const [rooms, setRooms] = useState<any[]>([]);
+    const [roomLoading, setRoomLoading] = useState(false);
 
     useEffect(() => {
-        setRoomLoading(isLoading)
+        setRoomLoading(isLoading);
 
-        setRooms([])
+        setRooms([]);
         roomsData.map((room: any) => {
-            setRooms((prev) => [...prev, room])
-        })
-    }, [roomsData, isLoading])
+            setRooms((prev) => [...prev, room]);
+        });
+    }, [roomsData, isLoading]);
 
     return (
         <div className="room-container">
@@ -34,7 +33,6 @@ const RoomList = ({
                         key={room.roomNumber}
                         room={room}
                         handleReserveRoom={handleReserveRoom}
-                        // editRoom={editRoom}
                         isAdmin={isAdmin}
                         handleModification={handleModification}
                         dates={dates}
@@ -46,7 +44,7 @@ const RoomList = ({
                 </p>
             )}
         </div>
-    )
-}
+    );
+};
 
-export default RoomList
+export default RoomList;

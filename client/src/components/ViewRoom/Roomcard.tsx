@@ -1,23 +1,21 @@
-import { Carousel, Embla, useAnimationOffsetEffect } from '@mantine/carousel'
-import { Box, Flex, Image } from '@mantine/core'
-import { useState } from 'react'
-import Modal from '../Modal/Modal'
-import SubmissionLoader from '../SubmissionLoader/SubmissionLoader'
-import ReserveButton from './ReserveButton'
+import { Carousel } from '@mantine/carousel';
+import { Box, Flex, Image } from '@mantine/core';
+import { useState } from 'react';
+import SubmissionLoader from '../SubmissionLoader/SubmissionLoader';
 
 function Roomcard({ room, dates }: any) {
-    const [modalOpen, setModalOpen] = useState(true)
-    const [isSubmitting, setIsSubmitting] = useState(false)
-    const [isSubmitSuccess, setisSubmitSuccess] = useState(false)
-    const [displayAlert, setdisplayAlert] = useState(false)
+    const [modalOpen, setModalOpen] = useState(true);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [isSubmitSuccess, setisSubmitSuccess] = useState(false);
+    const [displayAlert, setdisplayAlert] = useState(false);
 
     function closeModal() {
-        setModalOpen(false)
+        setModalOpen(false);
     }
 
     async function submitReservation(details: any) {
-        console.log(details)
-        setIsSubmitting(true)
+        console.log(details);
+        setIsSubmitting(true);
 
         // const response = await fetch('http://localhost:5000/api/reserve/room', {
         const response = await fetch(
@@ -29,20 +27,20 @@ function Roomcard({ room, dates }: any) {
                 },
                 body: new URLSearchParams(details),
             }
-        )
+        );
 
-        const status = await response.json()
+        const status = await response.json();
 
-        closeModal()
-        setIsSubmitting(false)
+        closeModal();
+        setIsSubmitting(false);
 
         if (status.status === 'fail') {
-            setisSubmitSuccess(false)
+            setisSubmitSuccess(false);
         } else {
-            setisSubmitSuccess(true)
+            setisSubmitSuccess(true);
         }
 
-        setdisplayAlert(true)
+        setdisplayAlert(true);
     }
 
     return (
@@ -72,18 +70,12 @@ function Roomcard({ room, dates }: any) {
                 />
             </Flex>
         </>
-    )
+    );
 }
 
-export default Roomcard
+export default Roomcard;
 
 function Roomcarousel() {
-    // const TRANSITION_DURATION = 10
-    // const [opened, setOpened] = useState(false)
-    // const [embla, setEmbla] = useState<Embla | null>(null)
-
-    // useAnimationOffsetEffect(embla, TRANSITION_DURATION)
-
     return (
         <Carousel
             sx={{ width: 500 }}
@@ -119,7 +111,7 @@ function Roomcarousel() {
                 />
             </Carousel.Slide>
         </Carousel>
-    )
+    );
 }
 
 function RoomInformation({ room, handleReserveRoom, dates }: any) {
@@ -158,21 +150,17 @@ function RoomInformation({ room, handleReserveRoom, dates }: any) {
                         handleReserveRoom={handleReserveRoom}
                         dates={dates}
                     />
-                    {/* <ReserveButton
-                        room={room}
-                        handleSubmit={submitReservation}
-                    /> */}
                 </Box>
             </Flex>
         </Box>
-    )
+    );
 }
 
-import { Notification } from '@mantine/core'
-import { IconCheck, IconX } from '@tabler/icons'
-import NewReserveButton from '../Room/NewReserveButton'
+import { Notification } from '@mantine/core';
+import { IconCheck, IconX } from '@tabler/icons';
+import NewReserveButton from '../Room/NewReserveButton';
 
-function NotifySuccess({ close }: any) {
+function NotifySuccess() {
     return (
         <Notification
             title="Operation Success"
@@ -180,14 +168,13 @@ function NotifySuccess({ close }: any) {
             color="teal"
             mt="sm"
             mb="sm"
-            // onClose={() => close(false)}
         >
             We have sent you an email to confirm your reservation
         </Notification>
-    )
+    );
 }
 
-function NotifyFail({ close }: any) {
+function NotifyFail() {
     return (
         <Notification
             title="Operation Fail"
@@ -195,9 +182,8 @@ function NotifyFail({ close }: any) {
             color="red"
             mt="sm"
             mb="sm"
-            // onClose={() => close(false)}
         >
             Unfortunately, an error has occured
         </Notification>
-    )
+    );
 }

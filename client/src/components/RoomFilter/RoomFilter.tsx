@@ -1,22 +1,27 @@
-import { Button, Flex, NativeSelect } from '@mantine/core'
-import { DateRangePicker, DateRangePickerValue } from '@mantine/dates'
-import { useState } from 'react'
+import { Button, Flex, NativeSelect } from '@mantine/core';
+import { DateRangePicker, DateRangePickerValue } from '@mantine/dates';
+import { useState } from 'react';
 
 const RoomFilter = ({ handleFilter }: any) => {
-    const [type, setType] = useState('all')
+    const [type, setType] = useState('all');
     const [date, setDate] = useState<DateRangePickerValue>([
         new Date(),
         new Date(),
-    ])
+    ]);
 
     return (
-        <Flex justify="end" mt="sm" mb="sm" gap="sm">
+        <Flex
+            justify="end"
+            mt="sm"
+            mb="sm"
+            gap="sm"
+        >
             <DateRangePicker
                 placeholder="Pick dates range"
                 value={date}
                 minDate={new Date()}
                 onChange={(e) => {
-                    setDate(e)
+                    setDate(e);
                 }}
             />
             <NativeSelect
@@ -25,13 +30,13 @@ const RoomFilter = ({ handleFilter }: any) => {
             />
             <Button
                 onClick={() => {
-                    handleFilter(date[0], date[1], type)
+                    handleFilter(date[0], date[1], type);
                 }}
             >
                 Filter
             </Button>
         </Flex>
-    )
-}
+    );
+};
 
-export default RoomFilter
+export default RoomFilter;

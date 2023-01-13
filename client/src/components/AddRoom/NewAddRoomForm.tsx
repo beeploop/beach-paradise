@@ -1,11 +1,11 @@
 import {
+    Button,
+    Flex,
+    NativeSelect,
     NumberInput,
     Textarea,
-    Button,
-    NativeSelect,
-    Flex,
-} from '@mantine/core'
-import { useForm } from '@mantine/form'
+} from '@mantine/core';
+import { useForm } from '@mantine/form';
 
 function NewAddRoomForm({ handleSubmit, closeModal }: any) {
     const form = useForm({
@@ -29,16 +29,20 @@ function NewAddRoomForm({ handleSubmit, closeModal }: any) {
                     ? 'Description too long'
                     : null,
         },
-    })
+    });
 
     return (
         <form
             onSubmit={form.onSubmit((values) => {
-                handleSubmit(values)
-                closeModal()
+                handleSubmit(values);
+                closeModal();
             })}
         >
-            <Flex justify="center" gap="md" mt="md">
+            <Flex
+                justify="center"
+                gap="md"
+                mt="md"
+            >
                 <NativeSelect
                     sx={{ flex: 1 }}
                     label="Room Type"
@@ -52,7 +56,11 @@ function NewAddRoomForm({ handleSubmit, closeModal }: any) {
                     {...form.getInputProps('status')}
                 />
             </Flex>
-            <Flex justify="center" gap="md" mt="md">
+            <Flex
+                justify="center"
+                gap="md"
+                mt="md"
+            >
                 <NumberInput
                     sx={{ flex: 1 }}
                     label="Number of beds"
@@ -74,12 +82,15 @@ function NewAddRoomForm({ handleSubmit, closeModal }: any) {
                 {...form.getInputProps('desc')}
             />
             <Flex justify="end">
-                <Button type="submit" mt="md">
+                <Button
+                    type="submit"
+                    mt="md"
+                >
                     Add Room
                 </Button>
             </Flex>
         </form>
-    )
+    );
 }
 
-export default NewAddRoomForm
+export default NewAddRoomForm;

@@ -1,5 +1,5 @@
-import ContentHeader from '../../components/ContentHeader'
-import DashboardLayout from '../../components/Dashboard/DashboardLayout'
+import ContentHeader from '../../components/ContentHeader';
+import DashboardLayout from '../../components/Dashboard/DashboardLayout';
 
 const AdminDashboard = () => {
     return (
@@ -7,7 +7,7 @@ const AdminDashboard = () => {
             <ContentHeader text={'Dashboard'} />
             <DashboardLayout />
         </div>
-    )
-}
+    );
+};
 
-export default AdminDashboard
+export default AdminDashboard;

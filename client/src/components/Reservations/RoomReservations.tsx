@@ -1,7 +1,7 @@
-import { Table } from '@mantine/core'
+import { Table } from '@mantine/core';
 
 function RoomReservations({ roomReservations }: any) {
-    const elements = roomReservations
+    const elements = roomReservations;
     const rows = elements.map((element: any) => (
         <tr key={element.bookingId}>
             <td>{element.bookingId}</td>
@@ -14,10 +14,13 @@ function RoomReservations({ roomReservations }: any) {
             <td>{new Date(element.createdAt).toLocaleDateString()}</td>
             <td>{element.price}</td>
         </tr>
-    ))
+    ));
 
     return (
-        <Table withColumnBorders striped>
+        <Table
+            withColumnBorders
+            striped
+        >
             <thead>
                 <tr>
                     <th>Booking ID</th>
@@ -33,7 +36,7 @@ function RoomReservations({ roomReservations }: any) {
             </thead>
             <tbody>{rows}</tbody>
         </Table>
-    )
+    );
 }
 
-export default RoomReservations
+export default RoomReservations;

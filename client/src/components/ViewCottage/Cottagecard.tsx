@@ -1,23 +1,22 @@
-import { Carousel, Embla, useAnimationOffsetEffect } from '@mantine/carousel'
-import { Box, Flex, Image } from '@mantine/core'
-import { useState } from 'react'
-// import Modal from '../Modal/Modal'
-import SubmissionLoader from '../SubmissionLoader/SubmissionLoader'
-import ReserveButton from './ReserveButton'
+import { Carousel } from '@mantine/carousel';
+import { Box, Flex, Image } from '@mantine/core';
+import { useState } from 'react';
+import SubmissionLoader from '../SubmissionLoader/SubmissionLoader';
+import ReserveButton from './ReserveButton';
 
 function Cottagecard({ cottage, dates }: any) {
-    const [modalOpen, setModalOpen] = useState(true)
-    const [isSubmitting, setIsSubmitting] = useState(false)
-    const [isSubmitSuccess, setisSubmitSuccess] = useState(false)
-    const [displayAlert, setdisplayAlert] = useState(false)
+    const [modalOpen, setModalOpen] = useState(true);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [isSubmitSuccess, setisSubmitSuccess] = useState(false);
+    const [displayAlert, setdisplayAlert] = useState(false);
 
     function closeModal() {
-        setModalOpen(false)
+        setModalOpen(false);
     }
 
     async function submitReservation(details: any) {
-        console.log(details)
-        setIsSubmitting(true)
+        console.log(details);
+        setIsSubmitting(true);
 
         const response = await fetch(
             // 'http://localhost:5000/api/reserve/cottage',
@@ -29,20 +28,20 @@ function Cottagecard({ cottage, dates }: any) {
                 },
                 body: new URLSearchParams(details),
             }
-        )
+        );
 
-        const status = await response.json()
+        const status = await response.json();
 
-        closeModal()
-        setIsSubmitting(false)
+        closeModal();
+        setIsSubmitting(false);
 
         if (status.status === 'fail') {
-            setisSubmitSuccess(false)
+            setisSubmitSuccess(false);
         } else {
-            setisSubmitSuccess(true)
+            setisSubmitSuccess(true);
         }
 
-        setdisplayAlert(true)
+        setdisplayAlert(true);
     }
 
     return (
@@ -69,24 +68,17 @@ function Cottagecard({ cottage, dates }: any) {
                 />
             </Flex>
         </>
-    )
+    );
 }
 
-export default Cottagecard
+export default Cottagecard;
 
 function Roomcarousel() {
-    // const TRANSITION_DURATION = 10
-    // const [opened, setOpened] = useState(false)
-    // const [embla, setEmbla] = useState<Embla | null>(null)
-
-    // useAnimationOffsetEffect(embla, TRANSITION_DURATION)
-
     return (
         <Carousel
             sx={{ width: 500 }}
             withIndicators
             height="100%"
-            // slideGap="md"
         >
             <Carousel.Slide
                 style={{ backgroundColor: 'lightgray', padding: '.5em' }}
@@ -113,7 +105,7 @@ function Roomcarousel() {
                 />
             </Carousel.Slide>
         </Carousel>
-    )
+    );
 }
 
 function RoomInformation({ cottage, handleReserveCottage, dates }: any) {
@@ -126,9 +118,7 @@ function RoomInformation({ cottage, handleReserveCottage, dates }: any) {
             }}
         >
             <h1>{cottage.name}</h1>
-            <div className="room-tags">
-                {/* • Type: {cottage.type} <br />• Beds: {cottage.bed} <br /> */}
-            </div>
+            <div className="room-tags"></div>
             <br />
             <p>{cottage.description}</p>
             <Flex
@@ -155,13 +145,13 @@ function RoomInformation({ cottage, handleReserveCottage, dates }: any) {
                 </Box>
             </Flex>
         </Box>
-    )
+    );
 }
 
-import { Notification } from '@mantine/core'
-import { IconCheck, IconX } from '@tabler/icons'
+import { Notification } from '@mantine/core';
+import { IconCheck, IconX } from '@tabler/icons';
 
-function NotifySuccess({ close }: any) {
+function NotifySuccess() {
     return (
         <Notification
             title="Operation Success"
@@ -169,14 +159,13 @@ function NotifySuccess({ close }: any) {
             color="teal"
             mt="sm"
             mb="sm"
-            // onClose={() => close(false)}
         >
             We have sent you an email to confirm your reservation
         </Notification>
-    )
+    );
 }
 
-function NotifyFail({ close }: any) {
+function NotifyFail() {
     return (
         <Notification
             title="Operation Fail"
@@ -184,9 +173,8 @@ function NotifyFail({ close }: any) {
             color="red"
             mt="sm"
             mb="sm"
-            // onClose={() => close(false)}
         >
             Unfortunately, an error has occured
         </Notification>
-    )
+    );
 }

@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import './AddRoom.css'
+import { useState } from 'react';
+import './AddRoom.css';
 
 const AddRoom = ({ isAddOpen, addRoom, submitRoom, closeAddRoom }: any) => {
     const [details, setDetails] = useState<any>({
@@ -8,13 +8,16 @@ const AddRoom = ({ isAddOpen, addRoom, submitRoom, closeAddRoom }: any) => {
         status: 'operational',
         rate: '',
         shortDesc: '',
-    })
+    });
 
     return (
         <>
             <div className="addRoom-container">
                 <div className="actions">
-                    <button className="btn-add" onClick={() => addRoom()}>
+                    <button
+                        className="btn-add"
+                        onClick={() => addRoom()}
+                    >
                         Add Room
                     </button>
                 </div>
@@ -146,7 +149,7 @@ const AddRoom = ({ isAddOpen, addRoom, submitRoom, closeAddRoom }: any) => {
                                             type="button"
                                             className="btn-cancel"
                                             onClick={(e) => {
-                                                closeAddRoom(e)
+                                                closeAddRoom(e);
                                             }}
                                         >
                                             Cancel
@@ -159,7 +162,7 @@ const AddRoom = ({ isAddOpen, addRoom, submitRoom, closeAddRoom }: any) => {
                 </div>
             </div>
         </>
-    )
-}
+    );
+};
 
-export default AddRoom
+export default AddRoom;

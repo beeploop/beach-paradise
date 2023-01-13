@@ -1,9 +1,9 @@
-import room1 from '../../Assets/images/room1.png'
-import room2 from '../../Assets/images/room2.png'
-import room3 from '../../Assets/images/room3.png'
-import room4 from '../../Assets/images/room4.png'
-import room5 from '../../Assets/images/room5.png'
-import './Homepage.css'
+import room1 from '../../Assets/images/room1.png';
+import room2 from '../../Assets/images/room2.png';
+import room3 from '../../Assets/images/room3.png';
+import room4 from '../../Assets/images/room4.png';
+import room5 from '../../Assets/images/room5.png';
+import './Homepage.css';
 
 const Carousel = () => {
     return (
@@ -53,19 +53,37 @@ const Carousel = () => {
                         className="carousel-item active"
                         data-bs-interval="10000"
                     >
-                        <img src={room1} className="favrooms img-responsive" />
+                        <img
+                            src={room1}
+                            className="favrooms img-responsive"
+                        />
                     </div>
-                    <div className="carousel-item" data-bs-interval="2000">
-                        <img src={room2} className="favrooms img-responsive" />
+                    <div
+                        className="carousel-item"
+                        data-bs-interval="2000"
+                    >
+                        <img
+                            src={room2}
+                            className="favrooms img-responsive"
+                        />
                     </div>
                     <div className="carousel-item">
-                        <img src={room3} className="favrooms img-responsive" />
+                        <img
+                            src={room3}
+                            className="favrooms img-responsive"
+                        />
                     </div>
                     <div className="carousel-item">
-                        <img src={room4} className="favrooms img-responsive" />
+                        <img
+                            src={room4}
+                            className="favrooms img-responsive"
+                        />
                     </div>
                     <div className="carousel-item">
-                        <img src={room5} className="favrooms img-responsive" />
+                        <img
+                            src={room5}
+                            className="favrooms img-responsive"
+                        />
                     </div>
                 </div>
                 <button
@@ -94,7 +112,7 @@ const Carousel = () => {
                 </button>
             </div>
         </>
-    )
-}
+    );
+};
 
-export default Carousel
+export default Carousel;

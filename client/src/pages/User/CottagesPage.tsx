@@ -1,55 +1,52 @@
-import { Notification, Box } from '@mantine/core'
-import { IconCheck, IconX } from '@tabler/icons'
-import { useEffect, useState } from 'react'
-import UtilBar from '../../components/AdminUtilBar/UtilBar'
-import ContentHeader from '../../components/ContentHeader'
-import CottageFilter from '../../components/CottageFilter/CottageFilter'
-import CottageList from '../../components/CottageList/CottageList'
-import RoomFilter from '../../components/RoomFilter/RoomFilter'
-import SubmissionLoader from '../../components/SubmissionLoader/SubmissionLoader'
+import { Box, Notification } from '@mantine/core';
+import { IconCheck, IconX } from '@tabler/icons';
+import { useEffect, useState } from 'react';
+import ContentHeader from '../../components/ContentHeader';
+import CottageFilter from '../../components/CottageFilter/CottageFilter';
+import CottageList from '../../components/CottageList/CottageList';
+import SubmissionLoader from '../../components/SubmissionLoader/SubmissionLoader';
 
 type TCottage = {
-    cottageId: Number
-    name: String
-    rate: Number
-    desc: String
-}
+    cottageId: Number;
+    name: String;
+    rate: Number;
+    desc: String;
+};
 
 const Cottages = () => {
-    const [cottages, setCottages] = useState<TCottage[]>([])
-    const [modalOpen, setModalOpen] = useState(true)
-    const [isSubmitting, setIsSubmitting] = useState(false)
-    const [isSubmitSuccess, setisSubmitSuccess] = useState(false)
-    const [displayAlert, setdisplayAlert] = useState(false)
-    const [dates, setDates] = useState([])
+    const [cottages, setCottages] = useState<TCottage[]>([]);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [isSubmitSuccess, setisSubmitSuccess] = useState(false);
+    const [displayAlert, setdisplayAlert] = useState(false);
+    const [dates, setDates] = useState([]);
 
     useEffect(() => {
-        fetchCottages(currentDate(), currentDate())
-    }, [])
+        fetchCottages(currentDate(), currentDate());
+    }, []);
 
     function currentDate() {
-        return new Date()
+        return new Date();
     }
 
     async function fetchCottages(checkin: any, checkout: any) {
-        setDates([checkin, checkout])
-        const checkinDate = new Date(checkin)
-        const checkoutDate = new Date(checkout)
+        setDates([checkin, checkout]);
+        const checkinDate = new Date(checkin);
+        const checkoutDate = new Date(checkout);
         // const response = await fetch('http://localhost:5000/api/cottage')
         const response = await fetch(
             `https://beach-reservation.onrender.com/api/cottage/filter?checkin=${checkinDate}&checkout=${checkoutDate}`
-        )
-        const cottages = await response.json()
-        if (!cottages) return
-        setCottages([])
+        );
+        const cottages = await response.json();
+        if (!cottages) return;
+        setCottages([]);
         cottages.map((cottage: TCottage) => {
-            setCottages((prev) => [...prev, cottage])
-        })
+            setCottages((prev) => [...prev, cottage]);
+        });
     }
 
     async function submitReservation(details: any) {
-        console.log(details)
-        setIsSubmitting(true)
+        console.log(details);
+        setIsSubmitting(true);
 
         const response = await fetch(
             // 'http://localhost:5000/api/reserve/cottage',
@@ -61,19 +58,19 @@ const Cottages = () => {
                 },
                 body: new URLSearchParams(details),
             }
-        )
+        );
 
-        const status = await response.json()
+        const status = await response.json();
 
-        setIsSubmitting(false)
+        setIsSubmitting(false);
 
         if (status.status === 'fail') {
-            setisSubmitSuccess(false)
+            setisSubmitSuccess(false);
         } else {
-            setisSubmitSuccess(true)
+            setisSubmitSuccess(true);
         }
 
-        setdisplayAlert(true)
+        setdisplayAlert(true);
     }
 
     return (
@@ -99,10 +96,10 @@ const Cottages = () => {
                 </Box>
             </div>
         </>
-    )
-}
+    );
+};
 
-export default Cottages
+export default Cottages;
 
 function NotifySuccess({ close }: any) {
     return (
@@ -116,7 +113,7 @@ function NotifySuccess({ close }: any) {
         >
             Operation is successful
         </Notification>
-    )
+    );
 }
 
 function NotifyFail({ close }: any) {
@@ -131,5 +128,5 @@ function NotifyFail({ close }: any) {
         >
             Unfortunately, operation failed
         </Notification>
-    )
+    );
 }

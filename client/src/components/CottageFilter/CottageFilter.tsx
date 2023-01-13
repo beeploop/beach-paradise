@@ -1,15 +1,19 @@
-import { useState } from 'react'
-import { DateRangePicker, DateRangePickerValue } from '@mantine/dates'
-import { Button, Flex } from '@mantine/core'
+import { Button, Flex } from '@mantine/core';
+import { DateRangePicker, DateRangePickerValue } from '@mantine/dates';
+import { useState } from 'react';
 
 function CottageFilter({ handleFilter }: any) {
     const [dates, setDates] = useState<DateRangePickerValue>([
         new Date(),
         new Date(),
-    ])
+    ]);
 
     return (
-        <Flex justify="end" gap="md" mt="md">
+        <Flex
+            justify="end"
+            gap="md"
+            mt="md"
+        >
             <DateRangePicker
                 placeholder="Pick dates range"
                 minDate={new Date()}
@@ -18,13 +22,13 @@ function CottageFilter({ handleFilter }: any) {
             />
             <Button
                 onClick={() => {
-                    handleFilter(dates[0], dates[1])
+                    handleFilter(dates[0], dates[1]);
                 }}
             >
                 Filter
             </Button>
         </Flex>
-    )
+    );
 }
 
-export default CottageFilter
+export default CottageFilter;

@@ -4,13 +4,13 @@ import {
     SimpleGrid,
     Skeleton,
     useMantineTheme,
-} from '@mantine/core'
+} from '@mantine/core';
 
-const PRIMARY_COL_HEIGHT = 300
+const PRIMARY_COL_HEIGHT = 300;
 
 export function LeadGrid() {
-    const theme = useMantineTheme()
-    const SECONDARY_COL_HEIGHT = PRIMARY_COL_HEIGHT / 2 - theme.spacing.md / 2
+    const theme = useMantineTheme();
+    const SECONDARY_COL_HEIGHT = PRIMARY_COL_HEIGHT / 2 - theme.spacing.md / 2;
 
     return (
         <Container my="md">
@@ -49,5 +49,5 @@ export function LeadGrid() {
                 </Grid>
             </SimpleGrid>
         </Container>
-    )
+    );
 }

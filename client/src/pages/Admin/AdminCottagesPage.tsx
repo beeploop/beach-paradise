@@ -1,42 +1,42 @@
-import { useEffect, useState } from 'react'
-import AddCottage from '../../components/AddCottage/AddCottage'
-import ContentHeader from '../../components/ContentHeader'
-import CottageList from '../../components/CottageList/CottageList'
-import SubmissionLoader from '../../components/SubmissionLoader/SubmissionLoader'
+import { useEffect, useState } from 'react';
+import AddCottage from '../../components/AddCottage/AddCottage';
+import ContentHeader from '../../components/ContentHeader';
+import CottageList from '../../components/CottageList/CottageList';
+import SubmissionLoader from '../../components/SubmissionLoader/SubmissionLoader';
 
 type TCottage = {
-    cottageId: Number
-    name: String
-    rate: Number
-    desc: String
-}
+    cottageId: Number;
+    name: String;
+    rate: Number;
+    desc: String;
+};
 
 const AdminCottagesPage = () => {
-    const [cottages, setCottages] = useState<TCottage[]>([])
-    const [notify, setNotify] = useState(false)
-    const [updateSuccess, setUpdateSuccess] = useState(false)
-    const [submissionLoading, setSubmissionLoading] = useState(false)
+    const [cottages, setCottages] = useState<TCottage[]>([]);
+    const [notify, setNotify] = useState(false);
+    const [updateSuccess, setUpdateSuccess] = useState(false);
+    const [submissionLoading, setSubmissionLoading] = useState(false);
 
     useEffect(() => {
-        fetchCottages()
-    }, [])
+        fetchCottages();
+    }, []);
 
     async function fetchCottages() {
-        setSubmissionLoading(true)
+        setSubmissionLoading(true);
         // const response = await fetch('http://localhost:5000/api/cottage')
         const response = await fetch(
             'https://beach-reservation.onrender.com/api/cottage/all'
-        )
-        const result = await response.json()
-        if (!result) return
+        );
+        const result = await response.json();
+        if (!result) return;
         result.map((cottage: TCottage) => {
-            setCottages((cur) => [...cur, cottage])
-        })
-        setSubmissionLoading(false)
+            setCottages((cur) => [...cur, cottage]);
+        });
+        setSubmissionLoading(false);
     }
 
     async function handleSubmit(cottageDetails: any) {
-        setSubmissionLoading(true)
+        setSubmissionLoading(true);
         const response = await fetch(
             // 'http://localhost:5000/api/admin/cottage/add',
             'https://beach-reservation.onrender.com/api/admin/cottage/add',
@@ -47,20 +47,20 @@ const AdminCottagesPage = () => {
                 },
                 body: new URLSearchParams(cottageDetails),
             }
-        )
-        const cottage = await response.json()
+        );
+        const cottage = await response.json();
         if (!cottage) {
-            setUpdateSuccess(false)
+            setUpdateSuccess(false);
         } else {
-            setUpdateSuccess(true)
+            setUpdateSuccess(true);
         }
-        setCottages((cur) => [...cur, cottage])
-        setSubmissionLoading(false)
-        handleNotify(true)
+        setCottages((cur) => [...cur, cottage]);
+        setSubmissionLoading(false);
+        handleNotify(true);
     }
 
     async function handleModification(modifications: any) {
-        setSubmissionLoading(true)
+        setSubmissionLoading(true);
         const response = await fetch(
             // 'http://localhost:5000/api/admin/cottage/edit',
             'https://beach-reservation.onrender.com/api/admin/cottage/edit',
@@ -71,30 +71,30 @@ const AdminCottagesPage = () => {
                 },
                 body: new URLSearchParams(modifications),
             }
-        )
-        const editedCottage = await response.json()
+        );
+        const editedCottage = await response.json();
         if (!editedCottage) {
-            setUpdateSuccess(false)
+            setUpdateSuccess(false);
         } else {
-            setUpdateSuccess(true)
+            setUpdateSuccess(true);
         }
         const updatedCottages = cottages.map((cottage) => {
             if (cottage.cottageId === editedCottage.cottageId) {
-                console.log('edited cottage: ', editedCottage)
-                return editedCottage
+                console.log('edited cottage: ', editedCottage);
+                return editedCottage;
             } else {
-                console.log('current cottage: ', cottage)
-                return cottage
+                console.log('current cottage: ', cottage);
+                return cottage;
             }
-        })
-        setCottages(updatedCottages)
-        handleNotify(true)
-        setSubmissionLoading(false)
-        window.scrollTo(0, 0)
+        });
+        setCottages(updatedCottages);
+        handleNotify(true);
+        setSubmissionLoading(false);
+        window.scrollTo(0, 0);
     }
 
     function handleNotify(state: boolean) {
-        setNotify(state)
+        setNotify(state);
     }
 
     return (
@@ -117,13 +117,13 @@ const AdminCottagesPage = () => {
                 />
             </div>
         </>
-    )
-}
+    );
+};
 
-export default AdminCottagesPage
+export default AdminCottagesPage;
 
-import { Notification } from '@mantine/core'
-import { IconCheck, IconX } from '@tabler/icons'
+import { Notification } from '@mantine/core';
+import { IconCheck, IconX } from '@tabler/icons';
 
 function NotififySuccess({ close }: any) {
     return (
@@ -137,7 +137,7 @@ function NotififySuccess({ close }: any) {
         >
             Operation is successful
         </Notification>
-    )
+    );
 }
 
 function NotifyFail({ close }: any) {
@@ -152,5 +152,5 @@ function NotifyFail({ close }: any) {
         >
             Unfortunately, operation failed
         </Notification>
-    )
+    );
 }

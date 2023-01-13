@@ -1,5 +1,5 @@
-import { Alert } from '@mantine/core'
-import { IconAlertCircle } from '@tabler/icons'
+import { Alert } from '@mantine/core';
+import { IconAlertCircle } from '@tabler/icons';
 
 function LoginAlert() {
     return (
@@ -12,7 +12,7 @@ function LoginAlert() {
         >
             The credentials you provided are incorrect.
         </Alert>
-    )
+    );
 }
 
-export default LoginAlert
+export default LoginAlert;

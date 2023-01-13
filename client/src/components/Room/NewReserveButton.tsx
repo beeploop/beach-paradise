@@ -1,12 +1,12 @@
-import { useState } from 'react'
-import { Modal, Button, Group } from '@mantine/core'
-import NewRoomReservationForm from '../Reservations/NewRoomReservationForm'
+import { Button, Group, Modal } from '@mantine/core';
+import { useState } from 'react';
+import NewRoomReservationForm from '../Reservations/NewRoomReservationForm';
 
 function NewReserveButton({ room, dates, handleReserveRoom }: any) {
-    const [opened, setOpened] = useState(false)
+    const [opened, setOpened] = useState(false);
 
     function closeModal() {
-        setOpened(false)
+        setOpened(false);
     }
 
     return (
@@ -26,12 +26,15 @@ function NewReserveButton({ room, dates, handleReserveRoom }: any) {
             </Modal>
 
             <Group position="center">
-                <Button size="md" onClick={() => setOpened(true)}>
+                <Button
+                    size="md"
+                    onClick={() => setOpened(true)}
+                >
                     Reserve
                 </Button>
             </Group>
         </>
-    )
+    );
 }
 
-export default NewReserveButton
+export default NewReserveButton;

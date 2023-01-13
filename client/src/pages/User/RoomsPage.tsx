@@ -1,28 +1,28 @@
-import { useEffect, useState } from 'react'
-import { Outlet } from 'react-router-dom'
-import ContentHeader from '../../components/ContentHeader'
-import RoomFilter from '../../components/RoomFilter/RoomFilter'
-import RoomList from '../../components/RoomList/RoomList'
-import SubmissionLoader from '../../components/SubmissionLoader/SubmissionLoader'
+import { useEffect, useState } from 'react';
+import { Outlet } from 'react-router-dom';
+import ContentHeader from '../../components/ContentHeader';
+import RoomFilter from '../../components/RoomFilter/RoomFilter';
+import RoomList from '../../components/RoomList/RoomList';
+import SubmissionLoader from '../../components/SubmissionLoader/SubmissionLoader';
 
 const RoomsPage = () => {
-    const [rooms, setRooms] = useState<any[]>([])
-    const [isSubmitting, setIsSubmitting] = useState(false)
-    const [isLoading, setIsLoading] = useState(false)
-    const [displayAlert, setDisplayAlert] = useState(false)
-    const [success, setSuccess] = useState(false)
-    const [dates, setDates] = useState([])
+    const [rooms, setRooms] = useState<any[]>([]);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const [displayAlert, setDisplayAlert] = useState(false);
+    const [success, setSuccess] = useState(false);
+    const [dates, setDates] = useState([]);
 
     useEffect(() => {
-        filterRooms(currentDate(), currentDate(), 'all')
-    }, [])
+        filterRooms(currentDate(), currentDate(), 'all');
+    }, []);
 
     function currentDate() {
-        return new Date()
+        return new Date();
     }
 
     async function reserveRoom(details: any) {
-        setIsSubmitting(true)
+        setIsSubmitting(true);
 
         // const response = await fetch('http://localhost:5000/api/reserve/room', {
         const response = await fetch(
@@ -34,46 +34,46 @@ const RoomsPage = () => {
                 },
                 body: new URLSearchParams(details),
             }
-        )
+        );
 
-        const status = await response.json()
+        const status = await response.json();
         if (!status) {
-            setSuccess(false)
+            setSuccess(false);
         } else {
-            setSuccess(true)
+            setSuccess(true);
         }
-        setDisplayAlert(true)
-        setIsSubmitting(false)
+        setDisplayAlert(true);
+        setIsSubmitting(false);
     }
 
     // Filters out rooms
     async function filterRooms(checkin: any, checkout: any, type: any) {
-        setDates([checkin, checkout])
-        const checkinDate = checkin.toLocaleDateString('en-CA')
-        const checkoutDate = checkout.toLocaleDateString('en-CA')
-        setIsLoading(true)
+        setDates([checkin, checkout]);
+        const checkinDate = checkin.toLocaleDateString('en-CA');
+        const checkoutDate = checkout.toLocaleDateString('en-CA');
+        setIsLoading(true);
 
         const response = await fetch(
             // `http://localhost:5000/api/rooms/filter?type=${type}&checkin=${checkin}&checkout=${checkout}`
             `https://beach-reservation.onrender.com/api/rooms/filter?type=${type}&checkin=${checkinDate}&checkout=${checkoutDate}`
-        )
-        const data = await response.json()
+        );
+        const data = await response.json();
 
-        setIsLoading(false)
+        setIsLoading(false);
 
         // Remove current rooms from state
-        setRooms([])
+        setRooms([]);
 
-        if (!data) return
+        if (!data) return;
 
         // Set new rooms to state
         data.map((room: any) => {
-            setRooms((prev) => [...prev, room])
-        })
+            setRooms((prev) => [...prev, room]);
+        });
     }
 
     function handleNotify(state: boolean) {
-        setDisplayAlert(state)
+        setDisplayAlert(state);
     }
 
     return (
@@ -99,13 +99,13 @@ const RoomsPage = () => {
                 <Outlet />
             </div>
         </>
-    )
-}
+    );
+};
 
-export default RoomsPage
+export default RoomsPage;
 
-import { Notification } from '@mantine/core'
-import { IconCheck, IconX } from '@tabler/icons'
+import { Notification } from '@mantine/core';
+import { IconCheck, IconX } from '@tabler/icons';
 
 function NotifySuccess({ close }: any) {
     return (
@@ -119,7 +119,7 @@ function NotifySuccess({ close }: any) {
         >
             Operation is successful
         </Notification>
-    )
+    );
 }
 
 function NotifyFail({ close }: any) {
@@ -134,5 +134,5 @@ function NotifyFail({ close }: any) {
         >
             Unfortunately, operation failed
         </Notification>
-    )
+    );
 }
