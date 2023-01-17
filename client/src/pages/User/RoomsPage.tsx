@@ -12,6 +12,7 @@ const RoomsPage = () => {
     const [displayAlert, setDisplayAlert] = useState(false);
     const [success, setSuccess] = useState(false);
     const [dates, setDates] = useState([]);
+    const { VITE_REACT_APP_BASE_URL } = import.meta.env;
 
     useEffect(() => {
         filterRooms(currentDate(), currentDate(), 'all');
@@ -26,7 +27,7 @@ const RoomsPage = () => {
 
         // const response = await fetch('http://localhost:5000/api/reserve/room', {
         const response = await fetch(
-            'https://beach-reservation.onrender.com/api/reserve/room',
+            `${VITE_REACT_APP_BASE_URL}/api/reserve/room`,
             {
                 method: 'POST',
                 headers: {
@@ -55,7 +56,7 @@ const RoomsPage = () => {
 
         const response = await fetch(
             // `http://localhost:5000/api/rooms/filter?type=${type}&checkin=${checkin}&checkout=${checkout}`
-            `https://beach-reservation.onrender.com/api/rooms/filter?type=${type}&checkin=${checkinDate}&checkout=${checkoutDate}`
+            `${VITE_REACT_APP_BASE_URL}/api/rooms/filter?type=${type}&checkin=${checkinDate}&checkout=${checkoutDate}`
         );
         const data = await response.json();
 

@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
 
 const Header = () => {
+    const { token } = useAuth();
+
     return (
         <nav className="navbar navbar-expand-lg">
             <div className="container-fluid">
@@ -49,7 +52,7 @@ const Header = () => {
                             <Link
                                 className="text-light"
                                 style={{ textDecoration: 'none' }}
-                                to={'/admin'}
+                                to={token ? '/admin/dashboard' : '/auth'}
                             >
                                 Admin
                             </Link>

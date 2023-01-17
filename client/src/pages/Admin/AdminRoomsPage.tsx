@@ -14,11 +14,12 @@ const AdminRoomsPage = () => {
     const [isPostSuccess, setIsPostSuccess] = useState(false);
     const [displayAlert, setDisplayAlert] = useState(false);
     const [updateSuccess, setUpdateSuccess] = useState(false);
+    const { VITE_REACT_APP_BASE_URL } = import.meta.env;
 
     useEffect(() => {
         setIsLoading(true);
         // fetch(`http://localhost:5000/api/rooms/all/${filter}`)
-        fetch(`https://beach-reservation.onrender.com/api/rooms/all/${filter}`)
+        fetch(`${VITE_REACT_APP_BASE_URL}/api/rooms/all/${filter}`)
             .then((response) => response.json())
             .then((data) => {
                 data.map((room: any) => setRooms((prev) => [...prev, room]));
@@ -30,7 +31,7 @@ const AdminRoomsPage = () => {
     async function modifyRoom(modifications: any) {
         setSubmissionLoading(true);
         const response = await fetch(
-            'https://beach-reservation.onrender.com/api/admin/room/edit',
+            `${VITE_REACT_APP_BASE_URL}/api/admin/room/edit`,
             {
                 method: 'POST',
                 headers: {
@@ -80,7 +81,7 @@ const AdminRoomsPage = () => {
         setSubmissionLoading(true);
 
         const response = await fetch(
-            'https://beach-reservation.onrender.com/api/admin/room/add',
+            `${VITE_REACT_APP_BASE_URL}/api/admin/room/add`,
             {
                 method: 'POST',
                 headers: {

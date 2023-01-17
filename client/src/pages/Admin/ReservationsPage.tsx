@@ -26,6 +26,7 @@ const ReservationsPage = () => {
     const [cottageReservations, setCottageReservations] = useState<
         TReservation[]
     >([]);
+    const { VITE_REACT_APP_BASE_URL } = import.meta.env;
 
     useEffect(() => {
         fetchReservations();
@@ -33,7 +34,7 @@ const ReservationsPage = () => {
 
     function fetchReservations() {
         // fetch('http://localhost:5000/api/admin/reservations')
-        fetch('https://beach-reservation.onrender.com/api/admin/reservations')
+        fetch(`${VITE_REACT_APP_BASE_URL}/api/admin/reservations`)
             .then((response) => response.json())
             .then((data) => {
                 data.rooms.map((reservation: any) => {

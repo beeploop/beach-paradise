@@ -1,4 +1,5 @@
 import { Navigate, Outlet } from 'react-router-dom';
+import useAuth from '../hooks/useAuth';
 import './Content-Item-Style.css';
 import AdminSidebar from './Sidebar/AdminSidebar';
 
@@ -7,13 +8,19 @@ interface TPropObject {
 }
 
 const AdminContentHolder = ({ auth }: TPropObject) => {
-    console.log('is Logged: ', auth.isLogged);
+    // console.log('is Logged: ', auth.isLogged);
+    const { token } = useAuth();
+    console.log({ token });
 
-    return auth.isLogged ? (
-        <div className="main-container">
-            <AdminSidebar />
-            <Outlet />
-        </div>
+    return token ? (
+        token.data.role === 'admin' ? (
+            <div className="main-container">
+                <AdminSidebar />
+                <Outlet />
+            </div>
+        ) : (
+            <Navigate to={'/reception'} />
+        )
     ) : (
         <Navigate to={'/auth'} />
     );

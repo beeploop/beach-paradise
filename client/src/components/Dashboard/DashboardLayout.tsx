@@ -20,15 +20,16 @@ type TData = {
 function DashboardLayout() {
     const [data, setData] = useState<TData>();
     const [isLoading, setIsLoading] = useState(false);
+    const { VITE_REACT_APP_BASE_URL } = import.meta.env;
 
     useEffect(() => {
-        fetchReservations();
+        // fetchReservations();
     }, []);
 
     function fetchReservations() {
         setIsLoading(true);
         // fetch('http://localhost:5000/api/admin/stats')
-        fetch('https://beach-reservation.onrender.com/api/admin/stats')
+        fetch(`${VITE_REACT_APP_BASE_URL}/api/admin/stats`)
             .then((res) => res.json())
             .then((data) => {
                 setData(data);

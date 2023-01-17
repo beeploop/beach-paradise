@@ -16,6 +16,7 @@ const AdminCottagesPage = () => {
     const [notify, setNotify] = useState(false);
     const [updateSuccess, setUpdateSuccess] = useState(false);
     const [submissionLoading, setSubmissionLoading] = useState(false);
+    const { VITE_REACT_APP_BASE_URL } = import.meta.env;
 
     useEffect(() => {
         fetchCottages();
@@ -25,7 +26,7 @@ const AdminCottagesPage = () => {
         setSubmissionLoading(true);
         // const response = await fetch('http://localhost:5000/api/cottage')
         const response = await fetch(
-            'https://beach-reservation.onrender.com/api/cottage/all'
+            `${VITE_REACT_APP_BASE_URL}/api/cottage/all`
         );
         const result = await response.json();
         if (!result) return;
@@ -39,7 +40,7 @@ const AdminCottagesPage = () => {
         setSubmissionLoading(true);
         const response = await fetch(
             // 'http://localhost:5000/api/admin/cottage/add',
-            'https://beach-reservation.onrender.com/api/admin/cottage/add',
+            `${VITE_REACT_APP_BASE_URL}/api/admin/cottage/add`,
             {
                 method: 'POST',
                 headers: {
@@ -63,7 +64,7 @@ const AdminCottagesPage = () => {
         setSubmissionLoading(true);
         const response = await fetch(
             // 'http://localhost:5000/api/admin/cottage/edit',
-            'https://beach-reservation.onrender.com/api/admin/cottage/edit',
+            `${VITE_REACT_APP_BASE_URL}/api/admin/cottage/edit`,
             {
                 method: 'POST',
                 headers: {

@@ -19,6 +19,16 @@ const AdminSidebar = () => {
                     className={({ isActive }) => {
                         return isActive ? 'nav-link active' : 'nav-link';
                     }}
+                    to="/admin/manage"
+                >
+                    Manage
+                </NavLink>
+            </ul>
+            <ul className="nav-item">
+                <NavLink
+                    className={({ isActive }) => {
+                        return isActive ? 'nav-link active' : 'nav-link';
+                    }}
                     to="/admin/rooms"
                 >
                     Rooms

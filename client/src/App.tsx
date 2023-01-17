@@ -6,6 +6,7 @@ import { AuthenticationTitle } from './components/AdminLogin/AuthenticationTitle
 import Loader from './components/Loader/Loader';
 import { NotFoundTitle } from './components/NotFound/NotFoundTitle';
 import ViewCottage from './components/ViewCottage/ViewCottage';
+import AdminManage from './pages/Admin/AdminManage';
 import Homepage from './pages/Homepage';
 const StaffPage = lazy(() => import('./pages/Staff/StaffPage'));
 const UserContentHolder = lazy(() => import('./components/UserContentHolder'));
@@ -73,6 +74,10 @@ const App = () => {
                         <Route
                             path="reservations"
                             element={<ReservationsPage />}
+                        />
+                        <Route
+                            path="manage"
+                            element={<AdminManage />}
                         />
                         <Route
                             path="logout"

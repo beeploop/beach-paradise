@@ -10,7 +10,8 @@ const LogoutAdmin = ({ handleLogout }: TPropFunction) => {
 
     useEffect(() => {
         setTimeout(() => {
-            handleLogout();
+            // handleLogout();
+            sessionStorage.clear();
             navigate('/');
         }, 1000);
     });

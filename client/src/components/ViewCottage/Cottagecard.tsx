@@ -9,6 +9,7 @@ function Cottagecard({ cottage, dates }: any) {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSubmitSuccess, setisSubmitSuccess] = useState(false);
     const [displayAlert, setdisplayAlert] = useState(false);
+    const { VITE_REACT_APP_BASE_URL } = import.meta.env;
 
     function closeModal() {
         setModalOpen(false);
@@ -20,7 +21,7 @@ function Cottagecard({ cottage, dates }: any) {
 
         const response = await fetch(
             // 'http://localhost:5000/api/reserve/cottage',
-            'https://beach-reservation.onrender.com/api/reserve/cottage',
+            `${VITE_REACT_APP_BASE_URL}/api/reserve/cottage`,
             {
                 method: 'POST',
                 headers: {

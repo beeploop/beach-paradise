@@ -12,6 +12,7 @@ import {
 import { useForm } from '@mantine/form';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
 import LoginAlert from './LoginAlert';
 
 interface TPropFunction {
@@ -21,6 +22,9 @@ interface TPropFunction {
 export function AuthenticationTitle({ setAuth }: TPropFunction) {
     const [error, setError] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const { VITE_REACT_APP_BASE_URL } = import.meta.env;
+    const { setToken } = useAuth();
+
     const form = useForm({
         initialValues: { email: '', password: '' },
 
@@ -38,7 +42,7 @@ export function AuthenticationTitle({ setAuth }: TPropFunction) {
         setIsSubmitting(true);
         const response = await fetch(
             // 'http://localhost:5000/api/admin/authenticate',
-            'https://beach-reservation.onrender.com/api/admin/authenticate',
+            `${VITE_REACT_APP_BASE_URL}/api/auth/login`,
             {
                 method: 'POST',
                 headers: {
@@ -50,11 +54,13 @@ export function AuthenticationTitle({ setAuth }: TPropFunction) {
                 }),
             }
         );
-        const { result } = await response.json();
+        // const { result } = await response.json();
+        const data = await response.json();
         setIsSubmitting(false);
-        if (!result) return setError(true);
-        setAuth(result);
-        navigate('/admin/dashboard');
+        if (!data.token) return setError(true);
+        // setAuth(result);
+        setToken(data);
+        // navigate('/admin/dashboard');
     };
 
     return (

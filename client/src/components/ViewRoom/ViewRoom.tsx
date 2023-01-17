@@ -8,6 +8,7 @@ const ViewRoom = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const location = useLocation();
+    const { VITE_REACT_APP_BASE_URL } = import.meta.env;
 
     useEffect(() => {
         fetchRoom();
@@ -20,7 +21,7 @@ const ViewRoom = () => {
     async function fetchRoom() {
         // const response = await fetch(`http://localhost:5000/api/rooms/${id}`)
         const response = await fetch(
-            `https://beach-reservation.onrender.com/api/rooms/${id}`
+            `${VITE_REACT_APP_BASE_URL}/api/rooms/${id}`
         );
         const room = await response.json();
         console.log(room);

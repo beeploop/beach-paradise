@@ -19,6 +19,7 @@ const Cottages = () => {
     const [isSubmitSuccess, setisSubmitSuccess] = useState(false);
     const [displayAlert, setdisplayAlert] = useState(false);
     const [dates, setDates] = useState([]);
+    const { VITE_REACT_APP_BASE_URL } = import.meta.env;
 
     useEffect(() => {
         fetchCottages(currentDate(), currentDate());
@@ -34,7 +35,7 @@ const Cottages = () => {
         const checkoutDate = new Date(checkout);
         // const response = await fetch('http://localhost:5000/api/cottage')
         const response = await fetch(
-            `https://beach-reservation.onrender.com/api/cottage/filter?checkin=${checkinDate}&checkout=${checkoutDate}`
+            `${VITE_REACT_APP_BASE_URL}/api/cottage/filter?checkin=${checkinDate}&checkout=${checkoutDate}`
         );
         const cottages = await response.json();
         if (!cottages) return;
@@ -50,7 +51,7 @@ const Cottages = () => {
 
         const response = await fetch(
             // 'http://localhost:5000/api/reserve/cottage',
-            'https://beach-reservation.onrender.com/api/reserve/cottage',
+            `${VITE_REACT_APP_BASE_URL}/api/reserve/cottage`,
             {
                 method: 'POST',
                 headers: {
