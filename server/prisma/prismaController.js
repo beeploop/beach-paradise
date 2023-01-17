@@ -208,14 +208,18 @@ db.getAllCottages = async () => {
 
 db.addCottage = async (cottageDetails) => {
     console.log({ cottageDetails });
-    const cottage = await prisma.cottage.create({
-        data: {
-            name: cottageDetails.name,
-            price: parseInt(cottageDetails.rate),
-            description: cottageDetails.desc,
-        },
-    });
-    return cottage;
+    try {
+        const cottage = await prisma.cottage.create({
+            data: {
+                name: cottageDetails.name,
+                price: parseInt(cottageDetails.rate),
+                description: cottageDetails.desc,
+            },
+        });
+        return { data: cottage, error: null };
+    } catch (error) {
+        return { data: null, error: error };
+    }
 };
 
 db.editCottage = async (modifications) => {

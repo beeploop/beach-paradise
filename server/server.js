@@ -8,10 +8,14 @@ const cottage = require('./routes/cottages');
 const admin = require('./routes/admin');
 
 const app = express();
+const corsOptions = {
+    origin: ['http://localhost:5173'],
+    methods: ['POST', 'GET'],
+};
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(
     session({
         secret: process.env.SESSION_SECRET,
