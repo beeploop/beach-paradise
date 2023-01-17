@@ -27,13 +27,13 @@ const RoomsPage = () => {
 
         // const response = await fetch('http://localhost:5000/api/reserve/room', {
         const response = await fetch(
-            `${VITE_REACT_APP_BASE_URL}/api/reserve/room`,
+            `${VITE_REACT_APP_BASE_URL}/api/rooms/reserve`,
             {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Content-Type': 'application/json',
                 },
-                body: new URLSearchParams(details),
+                body: JSON.stringify(details),
             }
         );
 

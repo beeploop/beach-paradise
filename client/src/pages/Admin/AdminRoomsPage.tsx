@@ -40,15 +40,15 @@ const AdminRoomsPage = () => {
                 body: new URLSearchParams(modifications),
             }
         );
-        const edittedRoom = response.json();
-        if (!edittedRoom) {
+        const editedRoom = response.json();
+        if (!editedRoom) {
             setUpdateSuccess(false);
         } else {
             setUpdateSuccess(true);
         }
         const updatedRooms = rooms.map((room) => {
-            if (room.roomNumber === edittedRoom.roomNumber) {
-                return edittedRoom;
+            if (room.roomNumber === editedRoom.roomNumber) {
+                return editedRoom;
             } else {
                 return room;
             }

@@ -5,25 +5,25 @@ import { MonthlyGoal } from './MonthlyGoal';
 import { StatsGrid } from './StatsGrid';
 import { StatsRing } from './StatsRing';
 
-type TData = {
-    cottageReservations: number;
-    roomReservations: number;
-    users: number;
-    cottageIncome: { _sum: { price: number } };
-    roomIncome: { _sum: { price: number } };
-    totalRooms: number;
-    totalCottages: number;
-    pendingRoom: number;
-    pendingCottage: number;
-};
+// type TData = {
+//     cottageReservations: number;
+//     roomReservations: number;
+//     users: number;
+//     cottageIncome: { _sum: { price: number } };
+//     roomIncome: { _sum: { price: number } };
+//     totalRooms: number;
+//     totalCottages: number;
+//     pendingRoom: number;
+//     pendingCottage: number;
+// };
 
 function DashboardLayout() {
-    const [data, setData] = useState<TData>();
+    const [data, setData] = useState<any>();
     const [isLoading, setIsLoading] = useState(false);
     const { VITE_REACT_APP_BASE_URL } = import.meta.env;
 
     useEffect(() => {
-        // fetchReservations();
+        fetchReservations();
     }, []);
 
     function fetchReservations() {

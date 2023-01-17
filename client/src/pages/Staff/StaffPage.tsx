@@ -1,12 +1,51 @@
 import { Button, Container, Flex, Paper, Tabs } from '@mantine/core';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ContentHeader from '../../components/ContentHeader';
-import { TableSort } from '../../components/TableSort';
+import CottagesReservations from './CottagesReservation';
+import RoomsReservation from './RoomsReservation';
+
+type TReservation = {
+    bookingId: string;
+    roomNumber: string;
+    cottageName: string;
+    userId: string;
+    checkin: string;
+    checkout: string;
+    adults: string;
+    kids: string;
+    price: string;
+    createdAt: string;
+};
 
 const ReceptionistPage = () => {
     const navigate = useNavigate();
+    const [roomReservations, setRoomReservations] = useState<any[]>([]);
+    const [cottageReservations, setCottageReservations] = useState<any[]>([]);
+    const { VITE_REACT_APP_BASE_URL } = import.meta.env;
+
+    useEffect(() => {
+        fetchReservations();
+    }, []);
+
+    function fetchReservations() {
+        // fetch('http://localhost:5000/api/admin/reservations')
+        fetch(`${VITE_REACT_APP_BASE_URL}/api/admin/reservations`)
+            .then((response) => response.json())
+            .then((data) => {
+                data.rooms.map((reservation: any) => {
+                    setRoomReservations((prev) => [...prev, reservation]);
+                });
+                data.cottages.map((reservation: any) => {
+                    setCottageReservations((prev) => [...prev, reservation]);
+                });
+            });
+    }
     return (
-        <Container sx={{ width: '100%', borderInline: '1px solid' }}>
+        <Container
+            size="lg"
+            sx={{ width: '100%', borderInline: '1px solid' }}
+        >
             <ContentHeader text={'Receptionist'} />
             <Flex
                 justify="end"
@@ -23,45 +62,27 @@ const ReceptionistPage = () => {
             </Flex>
             <Paper>
                 <Tabs
-                    defaultValue="checkin"
+                    defaultValue="room"
                     variant="outline"
                     my="sm"
                 >
                     <Tabs.List>
-                        <Tabs.Tab value="checkin">Check in</Tabs.Tab>
-                        <Tabs.Tab value="checkout">Check out</Tabs.Tab>
+                        <Tabs.Tab value="room">Room</Tabs.Tab>
+                        <Tabs.Tab value="cottage">Cottage</Tabs.Tab>
                     </Tabs.List>
 
                     <Tabs.Panel
-                        value="checkin"
+                        value="room"
                         pt="xs"
                     >
-                        <TableSort
-                            data={[
-                                {
-                                    name: 'john doe',
-                                    email: 'johndoe@gmail.com',
-                                    company: 'none',
-                                },
-                                {
-                                    name: 'marcus tee',
-                                    email: 'marcustee@gmail.com',
-                                    company: 'none',
-                                },
-                                {
-                                    name: 'alexander digret',
-                                    email: 'alexdig@gmail.com',
-                                    company: 'none',
-                                },
-                            ]}
-                        />
+                        <RoomsReservation data={roomReservations} />
                     </Tabs.Panel>
 
                     <Tabs.Panel
-                        value="checkout"
+                        value="cottage"
                         pt="xs"
                     >
-                        Messages tab content
+                        <CottagesReservations data={cottageReservations} />
                     </Tabs.Panel>
                 </Tabs>
             </Paper>

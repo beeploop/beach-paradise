@@ -44,19 +44,23 @@ const AdminCottagesPage = () => {
             {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Content-Type': 'application/json',
                 },
-                body: new URLSearchParams(cottageDetails),
+                body: JSON.stringify(cottageDetails),
             }
         );
         const cottage = await response.json();
-        if (!cottage) {
-            setUpdateSuccess(false);
-        } else {
-            setUpdateSuccess(true);
-        }
-        setCottages((cur) => [...cur, cottage]);
+        console.log({ cottage });
         setSubmissionLoading(false);
+
+        if (!cottage.error) {
+            console.log('no error adding cottage');
+            setUpdateSuccess(true);
+            setCottages((cur) => [...cur, cottage.data]);
+        } else {
+            console.log(`error adding cottage: ${cottage.error}`);
+            setUpdateSuccess(false);
+        }
         handleNotify(true);
     }
 
