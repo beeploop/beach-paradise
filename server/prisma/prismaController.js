@@ -1,10 +1,44 @@
 const { computePrice, validateAdultsAndKids } = require('../utils/helper');
 const { sendVerification, sendConfirmation } = require('../utils/mailer');
 const { PrismaClient } = require('@prisma/client');
-const { tokenLifetime } = require('../utils/tokenLifetime');
+const bcrypt = require('bcrypt');
+// const { tokenLifetime } = require('../utils/tokenLifetime');
 const prisma = new PrismaClient();
 
 let db = {};
+
+db.addEmployee = async (employeeData) => {
+    try {
+        const hashedPassword = await bcrypt.hash(employeeData.password, 10);
+        const employee = await prisma.admin.create({
+            data: {
+                name: employeeData.name,
+                email: employeeData.email,
+                phone: employeeData.phone,
+                password: hashedPassword,
+                role: employeeData.role,
+            },
+        });
+        return { employee: employee, error: null };
+    } catch (error) {
+        console.log(error);
+        return { employee: null, error: error };
+    }
+};
+
+db.getEmployees = async () => {
+    try {
+        const employees = await prisma.admin.findMany({
+            orderBy: {
+                role: 'asc',
+            },
+        });
+        return { employees: employees, error: null };
+    } catch (error) {
+        console.log(error);
+        return { employees: null, error: error };
+    }
+};
 
 db.getAvailableRooms = async () => {
     const today = new Date();
@@ -485,14 +519,22 @@ db.cancelBooking = async (token, bookingId) => {
 
 db.AdminAuth = async ({ email, password }) => {
     console.log(email);
-    const admin = await prisma.admin.findFirst({
-        where: {
-            email: email,
-        },
-    });
-    if (!admin) return { result: null };
-    if (admin.password !== password) return { result: null };
-    return { result: admin };
+    try {
+        const admin = await prisma.admin.findFirst({
+            where: {
+                email: email,
+            },
+        });
+        // console.log({ admin });
+        if (!admin) return { result: null };
+
+        const isValid = await bcrypt.compare(password, admin.password);
+        if (isValid) return { result: admin, error: null };
+        return { result: null, error: 'mismatch password' };
+    } catch (error) {
+        console.log('there was an error');
+        return { error: error };
+    }
 };
 
 db.getDashboardData = async () => {
@@ -521,6 +563,8 @@ db.getDashboardData = async () => {
             price: true,
         },
     });
+    // if (!pendingRoom && !pendingCottage) return
+    console.log({ pendingRoom, pendingCottage });
     return {
         users,
         roomReservations,
