@@ -1,5 +1,5 @@
-require('dotenv').config();
-const nodemailer = require('nodemailer');
+require('dotenv').config()
+const nodemailer = require('nodemailer')
 
 const transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -7,28 +7,28 @@ const transporter = nodemailer.createTransport({
         user: process.env.USER_EMAIL,
         pass: process.env.USER_PASS,
     },
-});
+})
 
 sendVerification = (userEmail, token) => {
-    console.log({ userEmail, token });
+    console.log({ userEmail, token })
     const mailOptions = {
         from: process.env.USER_EMAIL,
         to: userEmail,
         subject: 'EMAIL VERIFICATION FOR BEACH PARADISE RESERVATION',
         html: `
         <h1>Thank you for choosing Beach Paradise</h1>
-        <p>To confirm your reservation <a href="http://localhost:5000/api/reservation/verify/${token}">click here.</a> </p>
+        <p>To confirm your reservation <a href="http://localhost:5000/api/verify/${token}">click here.</a> </p>
         `,
-    };
+    }
 
     transporter.sendMail(mailOptions, (err, res) => {
-        if (err) return console.log('error sending mail', err);
-        return console.log('email sent');
-    });
-};
+        if (err) return console.log('error sending mail', err)
+        return console.log('email sent')
+    })
+}
 
 sendConfirmation = (userEmail, bookingDetails) => {
-    console.log({ userEmail });
+    console.log({ userEmail })
     const mailOptions = {
         from: process.env.USER_EMAIL,
         to: userEmail,
@@ -41,15 +41,15 @@ sendConfirmation = (userEmail, bookingDetails) => {
         <p>Room: ${bookingDetails.roomNumber}</p>
         <p>Estimated Fee: ₱ ${bookingDetails.price}</p>
         `,
-    };
+    }
 
     transporter.sendMail(mailOptions, (err, res) => {
-        if (err) return console.log('error sending mail', err);
-        return console.log('email sent');
-    });
-};
+        if (err) return console.log('error sending mail', err)
+        return console.log('email sent')
+    })
+}
 
 module.exports = {
     sendVerification,
     sendConfirmation,
-};
+}

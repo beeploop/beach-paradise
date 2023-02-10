@@ -48,11 +48,13 @@ router.post('/cottage/edit', async (req, res) => {
     res.send(cottage);
 });
 
+// Get the employees
 router.get('/employee', async (req, res) => {
     const employees = await db.getEmployees();
     res.send(employees);
 });
 
+// Add Employees
 router.post('/employee/add', async (req, res) => {
     const body = req.body;
     console.log(body);
@@ -60,6 +62,7 @@ router.post('/employee/add', async (req, res) => {
     res.send(employee);
 });
 
+// Get analytics data
 router.get('/stats', async (req, res) => {
     const data = await db.getDashboardData();
     res.send(data);

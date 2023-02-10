@@ -5,7 +5,7 @@ import {
     ScrollArea,
     Table,
 } from '@mantine/core';
-import { IconTableOptions, IconTrashX } from '@tabler/icons';
+import { IconPencil, IconTableOptions, IconTrashX } from '@tabler/icons';
 import { useState } from 'react';
 
 const useStyles = createStyles((theme) => ({
@@ -72,6 +72,11 @@ export default function CottagesReservations({ data }: TableScrollAreaProps) {
                         </ActionIcon>
                     </Menu.Target>
                     <Menu.Dropdown>
+                        <Menu.Item icon={<IconPencil size={14} />}>
+                            Reschedule
+                        </Menu.Item>
+                        <Menu.Divider />
+                        <Menu.Label>Danger</Menu.Label>
                         <Menu.Item
                             icon={<IconTrashX size={14} />}
                             color="red"

@@ -91,7 +91,7 @@ model Profile {
 }
 
 model Token {
-  tokenId   String      @id @default(uuid())
+  token     String      @db.VarChar(1000)
   booker    User        @relation(fields: [bookerId], references: [userId])
   bookerId  Int
   bookingId String      @unique

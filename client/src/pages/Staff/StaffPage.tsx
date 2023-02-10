@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import ContentHeader from '../../components/ContentHeader';
 import CottagesReservations from './CottagesReservation';
 import RoomsReservation from './RoomsReservation';
+import WalkinPage from './WalkinPage';
 
 type TReservation = {
     bookingId: string;
@@ -44,7 +45,7 @@ const ReceptionistPage = () => {
     return (
         <Container
             size="lg"
-            sx={{ width: '100%', borderInline: '1px solid' }}
+            sx={{ width: '100%' }}
         >
             <ContentHeader text={'Receptionist'} />
             <Flex
@@ -69,6 +70,7 @@ const ReceptionistPage = () => {
                     <Tabs.List>
                         <Tabs.Tab value="room">Room</Tabs.Tab>
                         <Tabs.Tab value="cottage">Cottage</Tabs.Tab>
+                        <Tabs.Tab value="walkin">Walk-in</Tabs.Tab>
                     </Tabs.List>
 
                     <Tabs.Panel
@@ -83,6 +85,12 @@ const ReceptionistPage = () => {
                         pt="xs"
                     >
                         <CottagesReservations data={cottageReservations} />
+                    </Tabs.Panel>
+                    <Tabs.Panel
+                        value="walkin"
+                        pt="xs"
+                    >
+                        <WalkinPage />
                     </Tabs.Panel>
                 </Tabs>
             </Paper>
