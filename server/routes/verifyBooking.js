@@ -1,7 +1,8 @@
+const express = require('express')
 const { PrismaClient } = require('@prisma/client')
+const { sendConfirmation } = require('../utils/mailer')
 const prisma = new PrismaClient()
 const jwt = require('jsonwebtoken')
-const express = require('express')
 const router = express.Router()
 
 router.get('/:token', async (req, res) => {

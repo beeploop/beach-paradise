@@ -1,33 +1,31 @@
 const express = require('express')
 const session = require('express-session')
 const cors = require('cors')
-const db = require('./prisma/prismaController')
 const auth = require('./routes/auth')
 const rooms = require('./routes/rooms')
 const cottage = require('./routes/cottages')
 const admin = require('./routes/admin')
 const verifyBooking = require('./routes/verifyBooking')
-
 const app = express()
+
 const corsOptions = {
     origin: ['http://localhost:5173'],
     methods: ['POST', 'GET'],
+}
+const sessionOptions = {
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        maxAge: parseInt(process.env.SESSION_AGE),
+        httpOnly: true,
+    },
 }
 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(cors(corsOptions))
-app.use(
-    session({
-        secret: process.env.SESSION_SECRET,
-        resave: false,
-        saveUninitialized: false,
-        cookie: {
-            maxAge: parseInt(process.env.SESSION_AGE),
-            httpOnly: true,
-        },
-    })
-)
+app.use(session(sessionOptions))
 
 app.get('/', (req, res) => {
     res.json({

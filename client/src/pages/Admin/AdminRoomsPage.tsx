@@ -1,35 +1,36 @@
-import { useEffect, useState } from 'react';
-import UtilBar from '../../components/AdminUtilBar/UtilBar';
-import ContentHeader from '../../components/ContentHeader';
-import RoomList from '../../components/RoomList/RoomList';
-import SubmissionLoader from '../../components/SubmissionLoader/SubmissionLoader';
+import { useEffect, useState } from 'react'
+import UtilBar from '../../components/AdminUtilBar/UtilBar'
+import ContentHeader from '../../components/ContentHeader'
+import RoomList from '../../components/RoomList/RoomList'
+import SubmissionLoader from '../../components/SubmissionLoader/SubmissionLoader'
 
 const AdminRoomsPage = () => {
-    const [rooms, setRooms] = useState<any[]>([]);
-    const [filter, setFilter] = useState('all');
-    const [isEditOpen, setIsEditOpen] = useState(false);
-    const [isAddOpen, setIsAddOpen] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
-    const [submissionLoading, setSubmissionLoading] = useState(false);
-    const [isPostSuccess, setIsPostSuccess] = useState(false);
-    const [displayAlert, setDisplayAlert] = useState(false);
-    const [updateSuccess, setUpdateSuccess] = useState(false);
-    const { VITE_REACT_APP_BASE_URL } = import.meta.env;
+    const [rooms, setRooms] = useState<any[]>([])
+    const [filter, setFilter] = useState('all')
+    const [isEditOpen, setIsEditOpen] = useState(false)
+    const [isAddOpen, setIsAddOpen] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
+    const [submissionLoading, setSubmissionLoading] = useState(false)
+    const [isPostSuccess, setIsPostSuccess] = useState(false)
+    const [displayAlert, setDisplayAlert] = useState(false)
+    const [updateSuccess, setUpdateSuccess] = useState(false)
+    const { VITE_REACT_APP_BASE_URL } = import.meta.env
 
     useEffect(() => {
-        setIsLoading(true);
+        setIsLoading(true)
         // fetch(`http://localhost:5000/api/rooms/all/${filter}`)
         fetch(`${VITE_REACT_APP_BASE_URL}/api/rooms/all/${filter}`)
             .then((response) => response.json())
             .then((data) => {
-                data.map((room: any) => setRooms((prev) => [...prev, room]));
-            });
-        setIsLoading(false);
-    }, []);
+                setRooms([])
+                data.map((room: any) => setRooms((prev) => [...prev, room]))
+            })
+        setIsLoading(false)
+    }, [filter])
 
     // TODO: dd functionality to send request to server to modify room
     async function modifyRoom(modifications: any) {
-        setSubmissionLoading(true);
+        setSubmissionLoading(true)
         const response = await fetch(
             `${VITE_REACT_APP_BASE_URL}/api/admin/room/edit`,
             {
@@ -39,46 +40,46 @@ const AdminRoomsPage = () => {
                 },
                 body: new URLSearchParams(modifications),
             }
-        );
-        const editedRoom = response.json();
+        )
+        const editedRoom = response.json()
         if (!editedRoom) {
-            setUpdateSuccess(false);
+            setUpdateSuccess(false)
         } else {
-            setUpdateSuccess(true);
+            setUpdateSuccess(true)
         }
         const updatedRooms = rooms.map((room) => {
             if (room.roomNumber === editedRoom.roomNumber) {
-                return editedRoom;
+                return editedRoom
             } else {
-                return room;
+                return room
             }
-        });
-        setRooms(updatedRooms);
-        setSubmissionLoading(false);
-        handleNotify(true);
+        })
+        setRooms(updatedRooms)
+        setSubmissionLoading(false)
+        handleNotify(true)
     }
 
     function handleAddRoomModal() {
-        setIsAddOpen((curr) => (curr = !curr));
+        setIsAddOpen((curr) => (curr = !curr))
     }
 
     function closeModal(e: any) {
         if (e.target.classList.contains('btn-cancel')) {
-            setIsAddOpen(false);
-            setIsEditOpen(false);
+            setIsAddOpen(false)
+            setIsEditOpen(false)
         }
     }
 
     function closeAlert() {
-        setDisplayAlert(false);
+        setDisplayAlert(false)
     }
 
     function filterRooms(filter: string) {
-        setFilter(filter);
+        setFilter(filter)
     }
 
     async function submitRoom(details: any) {
-        setSubmissionLoading(true);
+        setSubmissionLoading(true)
 
         const response = await fetch(
             `${VITE_REACT_APP_BASE_URL}/api/admin/room/add`,
@@ -89,16 +90,16 @@ const AdminRoomsPage = () => {
                 },
                 body: new URLSearchParams(details),
             }
-        );
-        const status = await response.json();
+        )
+        const status = await response.json()
 
-        setSubmissionLoading(false);
-        handleAddRoomModal();
+        setSubmissionLoading(false)
+        handleAddRoomModal()
 
         if (status.status === 'fail') {
-            setUpdateSuccess(false);
+            setUpdateSuccess(false)
         } else {
-            setUpdateSuccess(true);
+            setUpdateSuccess(true)
         }
 
         setRooms((prev) => [
@@ -111,16 +112,16 @@ const AdminRoomsPage = () => {
                 status: details.status,
                 price: details.rate,
             },
-        ]);
-        handleNotify(true);
+        ])
+        handleNotify(true)
     }
 
     function handleNotify(state: boolean) {
-        setDisplayAlert(state);
+        setDisplayAlert(state)
     }
 
     function testPost(room: any) {
-        console.log(room);
+        console.log(room)
     }
 
     return (
@@ -149,13 +150,13 @@ const AdminRoomsPage = () => {
                 />
             </div>
         </>
-    );
-};
+    )
+}
 
-export default AdminRoomsPage;
+export default AdminRoomsPage
 
-import { Notification } from '@mantine/core';
-import { IconCheck, IconX } from '@tabler/icons';
+import { Notification } from '@mantine/core'
+import { IconCheck, IconX } from '@tabler/icons'
 
 function NotifySuccess({ close }: any) {
     return (
@@ -169,7 +170,7 @@ function NotifySuccess({ close }: any) {
         >
             Operation is successful
         </Notification>
-    );
+    )
 }
 
 function NotifyFail({ close }: any) {
@@ -184,5 +185,5 @@ function NotifyFail({ close }: any) {
         >
             Unfortunately, operation failed
         </Notification>
-    );
+    )
 }
