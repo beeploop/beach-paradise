@@ -1,5 +1,5 @@
 require('dotenv').config()
-// const { computePrice, validateAdultsAndKids } = require('../utils/helper')
+const { computePrice, validateAdultsAndKids } = require('../utils/helper')
 const { sendVerification, sendConfirmation } = require('../utils/mailer')
 const { PrismaClient } = require('@prisma/client')
 const jwt = require('jsonwebtoken')

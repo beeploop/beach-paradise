@@ -1,6 +1,6 @@
 require('dotenv').config()
 const { PrismaClient } = require('@prisma/client')
-const { validateAdultsAndKids } = require('../utils/helper')
+const { validateAdultsAndKids, computePrice } = require('../utils/helper')
 const { sendVerification } = require('../utils/mailer')
 const prisma = new PrismaClient()
 const jwt = require('jsonwebtoken')
