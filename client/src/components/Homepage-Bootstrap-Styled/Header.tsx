@@ -19,10 +19,10 @@ const Header = () => {
                     <span className="navbar-toggler-icon text-light"></span>
                 </button>
                 <div
-                    className="collapse navbar-collapse"
+                    className="navbar-collapse collapse"
                     id="navbarText"
                 >
-                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                    <ul className="navbar-nav mb-lg-0 mb-2 me-auto">
                         <li>
                             <a
                                 className="nav-link active text-light"
