@@ -39,17 +39,14 @@ const reserveCottage = async (bookingDetails) => {
         },
     })
 
+    const totalPrice = computePrice(bookingDetails.checkin, bookingDetails.checkout, bookingDetails.rate);
     const booking = await prisma.cottageBooking.create({
         data: {
             cottageName: cottage.name,
             userId: user.userId,
             checkin: new Date(bookingDetails.checkin),
             checkout: new Date(bookingDetails.checkout),
-            price: computePrice(
-                bookingDetails.checkin,
-                bookingDetails.checkout,
-                bookingDetails.rate
-            ),
+            price: totalPrice,
         },
     })
 
@@ -74,8 +71,7 @@ const reserveCottage = async (bookingDetails) => {
 
     console.log({ user, token })
     const guest = `${bookingDetails.firstname} ${bookingDetails.lastname}`;
-    const price = computePrice(bookingDetails.checkin, bookingDetails.checkout, bookingDetails.rate);
-    sendVerification(user.email, token.token, guest, booking, 'cottage', price);
+    sendVerification(user.email, token.token, guest, booking, 'cottage', totalPrice);
     return { bookingData: booking, userData: user }
 }
 
@@ -97,6 +93,7 @@ const reserveRoom = async (bookingDetails) => {
         kids: bookingDetails.numOfKids,
     })
 
+    const totalPrice = computePrice(bookingDetails.checkin, bookingDetails.checkout, bookingDetails.rate);
     const booking = await prisma.roomBooking.create({
         data: {
             roomNumber: parseInt(bookingDetails.roomNumber),
@@ -105,11 +102,7 @@ const reserveRoom = async (bookingDetails) => {
             checkout: new Date(bookingDetails.checkout),
             adults: adults,
             kids: kids,
-            price: computePrice(
-                bookingDetails.checkin,
-                bookingDetails.checkout,
-                bookingDetails.rate
-            ),
+            price: totalPrice,
         },
     })
 
@@ -136,8 +129,7 @@ const reserveRoom = async (bookingDetails) => {
 
     console.log({ user, token })
     const guest = `${bookingDetails.firstname} ${bookingDetails.lastname}`;
-    const price = computePrice(bookingDetails.checkin, bookingDetails.checkout, bookingDetails.rate);
-    sendVerification(user.email, token.token, guest, booking, 'room', price);
+    sendVerification(user.email, token.token, guest, booking, 'room', totalPrice);
     return { bookingData: booking, userData: user }
 }
 
