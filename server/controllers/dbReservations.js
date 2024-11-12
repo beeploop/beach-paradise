@@ -6,9 +6,7 @@ const prisma = new PrismaClient()
 const jwt = require('jsonwebtoken')
 const userDB = require('./dbUser')
 
-let reservations = {}
-
-reservations.getReservations = async () => {
+const getReservations = async () => {
     const roomReservations = await prisma.roomBooking.findMany({
         where: {
             status: 'verified',
@@ -22,7 +20,7 @@ reservations.getReservations = async () => {
     return { rooms: roomReservations, cottages: cottageReservations }
 }
 
-reservations.reserveCottage = async (bookingDetails) => {
+const reserveCottage = async (bookingDetails) => {
     const user = await userDB.checkUserThenInsert({
         firstname: bookingDetails.firstname,
         lastname: bookingDetails.lastname,
@@ -55,20 +53,33 @@ reservations.reserveCottage = async (bookingDetails) => {
         },
     })
 
+    const jwtToken = jwt.sign(
+        {
+            userEmail: user.email,
+            userId: user.userId,
+            bookingId: booking.bookingId,
+        },
+        process.env.JWT_SECRET_TOKEN,
+        { expiresIn: '1m' }
+    )
+
     const token = await prisma.token.create({
         data: {
             bookerId: user.userId,
             bookingId: booking.bookingId,
             type: 'cottage',
+            token: jwtToken,
         },
     })
 
     console.log({ user, token })
-    sendVerification(user.email, token.token)
+    const guest = `${bookingDetails.firstname} ${bookingDetails.lastname}`;
+    const price = computePrice(bookingDetails.checkin, bookingDetails.checkout, bookingDetails.rate);
+    sendVerification(user.email, token.token, guest, booking, 'cottage', price);
     return { bookingData: booking, userData: user }
 }
 
-reservations.reserveRoom = async (bookingDetails) => {
+const reserveRoom = async (bookingDetails) => {
     const user = await userDB.checkUserThenInsert({
         firstname: bookingDetails.firstname,
         lastname: bookingDetails.lastname,
@@ -124,8 +135,14 @@ reservations.reserveRoom = async (bookingDetails) => {
     })
 
     console.log({ user, token })
-    sendVerification(user.email, token.token)
+    const guest = `${bookingDetails.firstname} ${bookingDetails.lastname}`;
+    const price = computePrice(bookingDetails.checkin, bookingDetails.checkout, bookingDetails.rate);
+    sendVerification(user.email, token.token, guest, booking, 'room', price);
     return { bookingData: booking, userData: user }
 }
 
-module.exports = reservations
+module.exports = {
+    getReservations,
+    reserveRoom,
+    reserveCottage,
+}

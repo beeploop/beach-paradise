@@ -48,6 +48,8 @@ router.get('/:token', async (req, res) => {
             },
             select: {
                 profileId: true,
+                firstname: true,
+                lastname: true,
             },
         })
         const userProfile = await prisma.profile.findUnique({
@@ -56,7 +58,8 @@ router.get('/:token', async (req, res) => {
             },
         })
 
-        sendConfirmation(userProfile.email, booking)
+        const guest = `${user.firstname} ${user.lastname}`
+        sendConfirmation(userProfile.email, guest, booking, tokenStoredInDB.type)
         res.redirect(`${process.env.FRONT_END_URL}`)
     })
 })
